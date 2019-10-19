@@ -93,10 +93,11 @@ GameObject:
   - component: {fileID: 1485906095886096981}
   - component: {fileID: 1485906095886096980}
   - component: {fileID: 1485906095886096987}
-  - component: {fileID: 1485906095886096986}
   - component: {fileID: 5108363603388013835}
+  - component: {fileID: 1485906095886096986}
   - component: {fileID: 2101986055}
-  - component: {fileID: 2101986054}
+  - component: {fileID: 6474208933467391265}
+  - component: {fileID: 2875207223456077659}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -144,7 +145,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16d8f16c5ba03594aa547d99bb56f527, type: 2}
+  - {fileID: 2100000, guid: adf692ecd226dbb45a655a2ae2de13d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -164,6 +165,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5108363603388013835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485906095886096985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0e48924a1201ab48b3eb438b40d66cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  moveDirection: {x: 0, y: 0, z: 0}
+  jumpSpeed: 12
+  speed: 10
+  sprintMultiplier: 1.5
+  gravity: 20
+  appliedGravity: 0
+  gravityIncreaseTimer: 0
+  increaseTimer: 0
+  groundedOverlay: {x: 0.2, y: 0.1, z: 0.2}
+  groundDistance: {x: 0, y: -1, z: 0}
+  curWeapons: []
+  sensX: 1.5
+  sensY: 1.5
+  minY: -65
+  maxY: 65
+  rotationY: 0
+  controller: {fileID: 0}
+  camera: {fileID: 5910181465415001387}
+  ground:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1485906095886096986
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -178,39 +214,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5108363603388013835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485906095886096985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e48924a1201ab48b3eb438b40d66cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  jumpSpeed: 12
-  speed: 10
-  sprintSpeed: 15
-  gravity: 20
-  appliedGravity: 0
-  gravityIncreaseTimer: 0
-  teleportPoint: 3
-  increaseTimer: 0
-  canIncrease: 0
-  groundedOverlay: {x: 0.2, y: 0.1, z: 0.2}
-  groundDistance: {x: 0, y: -1, z: 0}
-  sensX: 15
-  sensY: 15
-  minY: -65
-  maxY: 65
-  rotationY: 0
-  camera: {fileID: 5910181465415001387}
-  ground:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!143 &2101986055
 CharacterController:
   m_ObjectHideFlags: 0
@@ -229,7 +232,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2101986054
+--- !u!114 &6474208933467391265
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,30 +241,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1485906095886096985}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e48924a1201ab48b3eb438b40d66cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveDirection: {x: 0, y: 0, z: 0}
-  jumpSpeed: 12
-  speed: 10
-  sprintSpeed: 15
-  gravity: 20
-  appliedGravity: 0
-  gravityIncreaseTimer: 0
-  teleportPoint: 3
-  increaseTimer: 0
-  canIncrease: 0
-  groundedOverlay: {x: 0.2, y: 0.1, z: 0.2}
-  groundDistance: {x: 0, y: -1, z: 0}
-  sensX: 15
-  sensY: 15
-  minY: -65
-  maxY: 65
-  rotationY: 0
-  camera: {fileID: 0}
-  ground:
-    serializedVersion: 2
-    m_Bits: 0
+  serverOnly: 0
+  localPlayerAuthority: 1
+  m_AssetId: 5e2386f116bea45428f3328007c3082c
+  m_SceneId: 0
+--- !u!114 &2875207223456077659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485906095886096985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  compressRotation: 1
 --- !u!1 &5910181465415001387
 GameObject:
   m_ObjectHideFlags: 0

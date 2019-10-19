@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 /*--------------------------------------------------------------------------
  * Script Created by: Aiden Nathan.
@@ -8,7 +9,7 @@ using UnityEngine;
  -------------------------------------------------------------------------*/
 
 [RequireComponent(typeof(CharacterController))]
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
     #region Variables
     //Movement:
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
     public Vector3 groundedOverlay = new Vector3(0.2f, 0.1f, 0.2f); //Vector3 used to store the values for the collider used to check for isGrounded.
     public Vector3 groundDistance = new Vector3(0f, -1f, 0f); //Vector3 used to store the position of the isGrounded check.
 
+    [Header("Weapon Management")]
     public List<Weapon> curWeapons = new List<Weapon>();
 
     //MouseMovement: 
@@ -45,7 +47,7 @@ public class Player : MonoBehaviour
     public GameObject camera; //Reference for the attached camera.
     public LayerMask ground; //Reference for the LayerMask that stores the value for ground.
 
-    public bool isGrounded() //Used to determine if the player is grounded based on a collider check.
+    public bool IsGrounded() //Used to determine if the player is grounded based on a collider check.
     {
         Collider[] hitColliders = Physics.OverlapBox(transform.localPosition + groundDistance, groundedOverlay, Quaternion.identity, ground); //Creates a overlap box to check whether the player is grounded.
         for (int i = 0; i < hitColliders.Length; i++)
@@ -69,12 +71,15 @@ public class Player : MonoBehaviour
 
     public void Update() //Used to make reference to the sub-routines/methods.
     {
-        Debug.Log(isGrounded());
-        if (canMove)
-        {
-            Movement();
-            MouseMovement();
-        }
+        Debug.Log(IsGrounded());
+        //if (isLocalPlayer)
+        //{
+            if (canMove)
+            {
+                Movement();
+                MouseMovement();
+            }
+        //}
     }
     #endregion
 
@@ -84,7 +89,7 @@ public class Player : MonoBehaviour
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection = transform.TransformDirection(moveDirection);
-        if (isGrounded()) //Checks if the player is Grounded and applies all Y axis based movement.
+        if (IsGrounded()) //Checks if the player is Grounded and applies all Y axis based movement.
         {
             moveDirection.y = 0;
             gravityIncreaseTimer = 0;
