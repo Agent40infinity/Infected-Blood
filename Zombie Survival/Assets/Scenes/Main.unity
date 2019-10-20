@@ -512,10 +512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesDead: 1
+  round: 0
+  enemiesToSpawn: 8
   enemiesSpawning: 0
   finishedSpawning: 1
-  enemiesToSpawn: 8
-  round: 0
   spawnParent: {fileID: 0}
   spawnPoints: []
   enemyParent: {fileID: 0}
@@ -633,6 +633,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1485906095886096985, guid: 5e2386f116bea45428f3328007c3082c,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1485906095886096981, guid: 5e2386f116bea45428f3328007c3082c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -692,6 +697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SceneId
       value: 1841827289
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474208933467391265, guid: 5e2386f116bea45428f3328007c3082c,
+        type: 3}
+      propertyPath: localPlayerAuthority
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2875207223456077659, guid: 5e2386f116bea45428f3328007c3082c,
         type: 3}

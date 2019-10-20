@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject player;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        Vector3.MoveTowards(transform.position, player.transform.position, 50f);
+    }
+
+    private void OnDestroy()
+    {
+        EnemySpawner.enemiesAlive--;
     }
 }
