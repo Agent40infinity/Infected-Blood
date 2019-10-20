@@ -67,6 +67,9 @@ public class Player : NetworkBehaviour
         canMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         camera = GameObject.FindGameObjectWithTag("PlayerHead");
+
+        Cursor.lockState = CursorLockMode.Locked;
+        
     }
 
     public void Update() //Used to make reference to the sub-routines/methods.
