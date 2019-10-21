@@ -11,10 +11,6 @@ public class Enemy : MonoBehaviour
     public void Start()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
-    }
-
-    public void Update()
-    {
         nav.SetDestination(player.transform.position);
     }
 
