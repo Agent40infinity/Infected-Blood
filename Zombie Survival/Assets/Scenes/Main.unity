@@ -111,7 +111,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 79a4d5af4add2354582d76832c429846, type: 2}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -289,7 +289,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &645291184
 Transform:
@@ -467,6 +467,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb735266ef1c4c746a46778e4199798d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemiesDead: 1
+  round: 0
+  enemiesPerRound: 8
+  enemySpawner: {fileID: 0}
 --- !u!1 &1482245761
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,11 +515,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab414380e3094bd4f85811df9a9c7dfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesDead: 1
-  round: 0
-  enemiesToSpawn: 8
   enemiesSpawning: 0
   finishedSpawning: 1
+  enemiesToSpawn: 8
   spawnParent: {fileID: 0}
   spawnPoints: []
   enemyParent: {fileID: 0}
