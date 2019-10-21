@@ -10,7 +10,12 @@ public class Enemy : MonoBehaviour
 
     public void Start()
     {
+        player = GameObject.FindWithTag("Player");
         nav = gameObject.GetComponent<NavMeshAgent>();
+    }
+
+    public void Update()
+    {
         nav.SetDestination(player.transform.position);
     }
 
