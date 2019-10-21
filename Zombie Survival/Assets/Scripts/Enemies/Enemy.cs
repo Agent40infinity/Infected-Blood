@@ -13,6 +13,6 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        EnemySpawner.enemiesAlive--;
+        GameManager.enemiesAlive--;
     }
 }
