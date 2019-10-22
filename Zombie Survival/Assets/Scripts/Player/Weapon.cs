@@ -73,7 +73,7 @@ public class Weapon : MonoBehaviour
             case FireType.Hitscan:
                 Vector3 mousePosition = playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hit;
-                Debug.DrawRay(mousePosition, playerCam.transform.forward, Color.red, 5f);
+                Debug.DrawRay(mousePosition, playerCam.transform.forward * range, Color.red, 5f);
                 if (Physics.Raycast(mousePosition, playerCam.transform.forward, out hit, range))
                 {
                     if (hit.collider.tag == "Enemy")
