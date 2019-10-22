@@ -71,23 +71,22 @@ public class Weapon : MonoBehaviour
         switch (function)
         {
             case FireType.Hitscan:
-                Vector3 mousePosition = playerCam.ScreenToWorldPoint(Vector3.zero);
+                Vector3 mousePosition = playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hit;
-                Debug.Log("Referenced");
-                if (Physics.Raycast(player.transform.position, mousePosition, out hit, Range))
+                Debug.DrawRay(mousePosition, playerCam.transform.forward, Color.red, 5f);
+                if (Physics.Raycast(mousePosition, playerCam.transform.forward, out hit, range))
                 {
-                    Debug.Log("Out");
-
                     if (hit.collider.tag == "Enemy")
                     {
-                        Debug.Log("En");
-
-                        hit.collider.GetComponent<Enemy>().Death();
+                        hit.collider.gameObject.GetComponent<Enemy>().Death();
                     }
                 }
                 break;
             case FireType.Projectile:
-
+                GameObject bullet = Resources.Load<GameObject>("Prefabs/Bullet");
+                Instantiate(bullet, transform.position, Quaternion.identity);
+                Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
+                bulletRigid.AddForce(Vector3.forward * 100f, ForceMode.Impulse);
                 break;
             case FireType.Entity:
 
