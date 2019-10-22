@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Weapon : MonoBehaviour
 {
     //General:
@@ -10,6 +11,7 @@ public class Weapon : MonoBehaviour
     private float reloadTime;
     private float fireRate;
     private float spread;
+    private float range;
     private FireType function;
 
     //References:
@@ -46,6 +48,12 @@ public class Weapon : MonoBehaviour
         set { spread = value; }
     }
 
+    public float Range
+    {
+        get { return range; }
+        set { range = value; }
+    }
+
     public FireType Function
     {
         get { return function; }
@@ -56,6 +64,38 @@ public class Weapon : MonoBehaviour
     {
         get { return gunObject; }
         set { gunObject = value; }
+    }
+
+    public void Shoot(Camera playerCam, GameObject player)
+    {
+        switch (function)
+        {
+            case FireType.Hitscan:
+                Vector3 mousePosition = playerCam.ScreenToWorldPoint(Vector3.zero);
+                RaycastHit hit;
+                Debug.Log("Referenced");
+                if (Physics.Raycast(player.transform.position, mousePosition, out hit, Range))
+                {
+                    Debug.Log("Out");
+
+                    if (hit.collider.tag == "Enemy")
+                    {
+                        Debug.Log("En");
+
+                        hit.collider.GetComponent<Enemy>().Death();
+                    }
+                }
+                break;
+            case FireType.Projectile:
+
+                break;
+            case FireType.Entity:
+
+                break;
+            case FireType.Shotgun:
+
+                break;
+        }
     }
 }
 

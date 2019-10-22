@@ -10,6 +10,7 @@ public static class WeaponType
         float reloadTime = 0;
         float fireRate = 0;
         float spread = 0;
+        float range = 25f;
         FireType function = FireType.Hitscan;
         GameObject gunObject = Resources.Load("Prefabs/Gun") as GameObject;
 
@@ -66,6 +67,7 @@ public static class WeaponType
             ReloadTime = reloadTime,
             FireRate = fireRate,
             Spread = spread,
+            Range = range,
             Function = function,
             Gun = gunObject
         };

@@ -28,7 +28,7 @@ public class Player : NetworkBehaviour
     public Vector3 groundedOverlay = new Vector3(0.2f, 0.1f, 0.2f); //Vector3 used to store the values for the collider used to check for isGrounded.
     public Vector3 groundDistance = new Vector3(0f, -1f, 0f); //Vector3 used to store the position of the isGrounded check.
 
-    [Header("Weapon Management")]
+   [Header("Weapon Management")]
     public List<Weapon> curWeapons = new List<Weapon>();
 
     //MouseMovement: 
@@ -67,6 +67,8 @@ public class Player : NetworkBehaviour
         canMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         camera = GameObject.FindGameObjectWithTag("PlayerHead");
+        curWeapons.Add(WeaponType.AddWeapon("Pistol"));
+        Instantiate(curWeapons[0].Gun);
 
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -81,6 +83,11 @@ public class Player : NetworkBehaviour
             {
                 Movement();
                 MouseMovement();
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                curWeapons[0].Shoot(camera.GetComponentInChildren<Camera>(), gameObject);
             }
         //}
     }

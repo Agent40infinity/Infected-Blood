@@ -27,6 +27,11 @@ public class Enemy : MonoBehaviour
         nav.SetDestination(player.transform.position);
     }
 
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+
     private void OnDestroy()
     {
         GameManager.enemiesAlive--;
