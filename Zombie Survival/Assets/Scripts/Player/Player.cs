@@ -28,8 +28,9 @@ public class Player : NetworkBehaviour
     public Vector3 groundedOverlay = new Vector3(0.2f, 0.1f, 0.2f); //Vector3 used to store the values for the collider used to check for isGrounded.
     public Vector3 groundDistance = new Vector3(0f, -1f, 0f); //Vector3 used to store the position of the isGrounded check.
 
-   [Header("Weapon Management")]
+    [Header("Weapon Management")]
     public List<Weapon> curWeapons = new List<Weapon>();
+    public float shotCooldown;
 
     //MouseMovement: 
     [Header("Camera Controller")]
@@ -45,6 +46,7 @@ public class Player : NetworkBehaviour
     [Header("References")]
     public CharacterController controller; //Reference for the attached character controller.
     public GameObject camera; //Reference for the attached camera.
+    public GameObject hand;
     public LayerMask ground; //Reference for the LayerMask that stores the value for ground.
 
     public bool IsGrounded() //Used to determine if the player is grounded based on a collider check.
@@ -67,8 +69,10 @@ public class Player : NetworkBehaviour
         canMove = true;
         controller = gameObject.GetComponent<CharacterController>();
         camera = GameObject.FindGameObjectWithTag("PlayerHead");
+        hand = GameObject.Find("Hand");
         curWeapons.Add(WeaponType.AddWeapon("Pistol"));
-        Instantiate(curWeapons[0].Gun);
+        Instantiate(curWeapons[0].Gun, hand.transform.position, Quaternion.identity, hand.transform);
+        shotCooldown = curWeapons[0].FireRate;
 
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -85,10 +89,7 @@ public class Player : NetworkBehaviour
                 MouseMovement();
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
-                curWeapons[0].Shoot(camera.GetComponentInChildren<Camera>(), gameObject);
-            }
+        Shooting(0);
         //}
     }
     #endregion
@@ -141,6 +142,45 @@ public class Player : NetworkBehaviour
         rotationY += Input.GetAxis("Mouse Y") * sensY; //Records movement for Y axis.
         rotationY = Mathf.Clamp(rotationY, minY, maxY); //Applies a Clamp to give boundaries to the movement on the Y axis.
         camera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0); //applies movement for the Y axis.
+    }
+    #endregion
+
+    #region Shooting
+    public void Shooting(int weaponIndex)
+    {
+        Debug.Log("Clip: " + curWeapons[weaponIndex].Clip);
+        Debug.Log("Ammo: " + curWeapons[weaponIndex].Ammo);
+        if (shotCooldown <= 0)
+        {
+            if (curWeapons[weaponIndex].Clip > 0)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    curWeapons[weaponIndex].Shoot(camera.GetComponentInChildren<Camera>(), gameObject);
+                    shotCooldown = curWeapons[weaponIndex].FireRate;
+                    curWeapons[weaponIndex].Clip--;
+                }
+            }
+            else if (curWeapons[weaponIndex].Clip == 0 && curWeapons[weaponIndex].Ammo > 0)
+            {
+                StartCoroutine(Reload(weaponIndex));
+            }
+        }
+        else
+        {
+            shotCooldown -= Time.deltaTime;
+        }
+      
+    }
+
+    public IEnumerator Reload(int weaponIndex)
+    {
+        Debug.Log("Reloading: " + curWeapons[weaponIndex].Clip);
+        curWeapons[weaponIndex].Ammo -= curWeapons[weaponIndex].ClipSize;
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(curWeapons[weaponIndex].ReloadTime);
+        curWeapons[weaponIndex].Clip = curWeapons[weaponIndex].ClipSize;
+        Debug.Log("Reloaded: " + curWeapons[weaponIndex].Clip);
     }
     #endregion
 

@@ -12,6 +12,9 @@ public class Weapon : MonoBehaviour
     private float fireRate;
     private float spread;
     private float range;
+    private int ammo;
+    private int clipSize;
+    private int clip;
     private FireType function;
 
     //References:
@@ -54,6 +57,24 @@ public class Weapon : MonoBehaviour
         set { range = value; }
     }
 
+    public int ClipSize
+    {
+        get { return clipSize; }
+        set { clipSize = value; }
+    }
+
+    public int Clip
+    {
+        get { return clip; }
+        set { clip = value; }
+    }
+
+    public int Ammo
+    {
+        get { return ammo; }
+        set { ammo = value; }
+    }
+
     public FireType Function
     {
         get { return function; }
@@ -66,7 +87,7 @@ public class Weapon : MonoBehaviour
         set { gunObject = value; }
     }
 
-    public void Shoot(Camera playerCam, GameObject player)
+    public void Shoot(Camera playerCam, GameObject gun)
     {
         switch (function)
         {
