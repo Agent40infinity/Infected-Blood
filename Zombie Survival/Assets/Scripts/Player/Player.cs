@@ -31,6 +31,7 @@ public class Player : NetworkBehaviour
     [Header("Weapon Management")]
     public List<Weapon> curWeapons = new List<Weapon>();
     public float shotCooldown;
+    public bool canFire = true;
 
     //MouseMovement: 
     [Header("Camera Controller")]
@@ -80,7 +81,7 @@ public class Player : NetworkBehaviour
 
     public void Update() //Used to make reference to the sub-routines/methods.
     {
-        Debug.Log(IsGrounded());
+        //Debug.Log(IsGrounded());
         //if (isLocalPlayer)
         //{
             if (canMove)
@@ -152,7 +153,7 @@ public class Player : NetworkBehaviour
         Debug.Log("Ammo: " + curWeapons[weaponIndex].Ammo);
         if (shotCooldown <= 0)
         {
-            if (curWeapons[weaponIndex].Clip > 0)
+            if (curWeapons[weaponIndex].Clip > 0 && canFire == true)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -164,6 +165,7 @@ public class Player : NetworkBehaviour
             else if (curWeapons[weaponIndex].Clip == 0 && curWeapons[weaponIndex].Ammo > 0)
             {
                 StartCoroutine(Reload(weaponIndex));
+                canFire = false;
             }
         }
         else
@@ -177,9 +179,10 @@ public class Player : NetworkBehaviour
     {
         Debug.Log("Reloading: " + curWeapons[weaponIndex].Clip);
         curWeapons[weaponIndex].Ammo -= curWeapons[weaponIndex].ClipSize;
+        curWeapons[weaponIndex].Clip = curWeapons[weaponIndex].ClipSize;
         yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(curWeapons[weaponIndex].ReloadTime);
-        curWeapons[weaponIndex].Clip = curWeapons[weaponIndex].ClipSize;
+        canFire = true;
         Debug.Log("Reloaded: " + curWeapons[weaponIndex].Clip);
     }
     #endregion

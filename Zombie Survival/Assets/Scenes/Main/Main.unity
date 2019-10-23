@@ -700,19 +700,5 @@ PrefabInstance:
       propertyPath: m_SceneId
       value: 1095887678
       objectReference: {fileID: 0}
-    - target: {fileID: 5108363603388013835, guid: 5e2386f116bea45428f3328007c3082c,
-        type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5108363603388013835, guid: 5e2386f116bea45428f3328007c3082c,
-        type: 3}
-      propertyPath: jumpSpeed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1051895414, guid: 5e2386f116bea45428f3328007c3082c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e2386f116bea45428f3328007c3082c, type: 3}
