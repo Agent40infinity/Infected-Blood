@@ -11,6 +11,9 @@ public static class WeaponType
         float fireRate = 0;
         float spread = 0;
         float range = 25f;
+        int clipSize = 8;
+        int clip = clipSize;
+        int ammo = 16;
         FireType function = FireType.Hitscan;
         GameObject gunObject = Resources.Load("Prefabs/Gun") as GameObject;
 
@@ -68,6 +71,9 @@ public static class WeaponType
             FireRate = fireRate,
             Spread = spread,
             Range = range,
+            ClipSize = clipSize,
+            Clip = clip,
+            Ammo = ammo,
             Function = function,
             Gun = gunObject
         };
