@@ -23,15 +23,8 @@ public class Player : NetworkBehaviour
     public float gravityIncreaseTimer; //Timer used to increase appliedGravity's effect over time.
     public float increaseTimer = 0; //Counter used to disable the players ability to increase the sprintSpeed after a certain time frame.
 
-    public static bool canMove = true; //Gateway variable to lock all movement (Camera and Player).
-
     public Vector3 groundedOverlay = new Vector3(0.2f, 0.1f, 0.2f); //Vector3 used to store the values for the collider used to check for isGrounded.
     public Vector3 groundDistance = new Vector3(0f, -1f, 0f); //Vector3 used to store the position of the isGrounded check.
-
-    [Header("Weapon Management")]
-    public List<Weapon> curWeapons = new List<Weapon>();
-    public float shotCooldown;
-    public bool canFire = true;
 
     //MouseMovement: 
     [Header("Camera Controller")]
@@ -42,6 +35,24 @@ public class Player : NetworkBehaviour
     public float minY = -65; //Max value for the rotation on the Y axis for the camera.
     public float maxY = 65; //Min value for the rotation on the Y axis for the camera.
     public float rotationY = 0; //value to store the Y axis for the rotation.
+
+    //Weapon Management:
+    [Header("Weapon Management")]
+    public List<Weapon> curWeapons = new List<Weapon>();
+    public float shotCooldown;
+    public bool canFire = true;
+
+    //Interactions:
+    [Header("Interactions")]
+    public float interactRange = 5f;
+    public bool revivingPlayer = false;
+
+    //Health Management:
+    [Header("Health Management")]
+    public int curHealth; //Current health of the player.
+    public int maxHealth = 100; //Max health of the player.
+    public bool isDowned = false; //Checks whether or not the player is downed and needs to be revived.
+    public bool beingRevived; //Checks whether or not the player is being revived
 
     //References:
     [Header("References")]
@@ -67,7 +78,8 @@ public class Player : NetworkBehaviour
     #region General
     public void Start() //Used to determine default values and grab references.
     {
-        canMove = true;
+        isDowned = false;
+        curHealth = maxHealth;
         controller = gameObject.GetComponent<CharacterController>();
         camera = GameObject.FindGameObjectWithTag("PlayerHead");
         hand = GameObject.Find("Hand");
@@ -84,10 +96,15 @@ public class Player : NetworkBehaviour
         //Debug.Log(IsGrounded());
         //if (isLocalPlayer)
         //{
-            if (canMove)
+            if (!isDowned)
             {
                 Movement();
                 MouseMovement();
+                Interactions();
+                if (revivingPlayer == true)
+                {
+                    revivingPlayer();
+                }
             }
 
         Shooting(0);
@@ -184,6 +201,46 @@ public class Player : NetworkBehaviour
         yield return new WaitForSeconds(curWeapons[weaponIndex].ReloadTime);
         canFire = true;
         Debug.Log("Reloaded: " + curWeapons[weaponIndex].Clip);
+    }
+    #endregion
+
+    #region Interactions
+    public void Interactions()
+    {
+        RaycastHit hit;
+        Vector3 mousePosition = camera.GetComponentInChildren<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+        if (Physics.Raycast(mousePosition, camera.transform.forward, out hit, interactRange))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                hit.collider.GetComponent<Player>().beingRevived = true;
+                revivingPlayer = true;
+            }
+        }
+    }
+    #endregion
+
+    #region Health Management
+    public void TakeDamage(int damageDealt)
+    {
+        if (curHealth > 0)
+        {
+            curHealth -= damageDealt;
+        }
+        else
+        {
+            GoDown();
+        }
+    }
+
+    public void GoDown()
+    {
+        isDowned = true;
+    }
+
+    public void revivingPlayer()
+    {
+
     }
     #endregion
 
