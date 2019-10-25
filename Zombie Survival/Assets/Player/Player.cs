@@ -12,6 +12,13 @@ using Mirror;
 public class Player : NetworkBehaviour
 {
     #region Variables
+    //Statistics:
+    [Header("Statistics")]
+    public int score = 0;
+    public int money = 0;
+    public int downs = 0;
+    public int kills = 0;
+    
     //Movement:
     [Header("Physics")]
     public Vector3 moveDirection; //Vector3 used to store the movement values.
@@ -41,6 +48,10 @@ public class Player : NetworkBehaviour
     public List<Weapon> curWeapons = new List<Weapon>();
     public float shotCooldown;
     public bool canFire = true;
+
+    //Perk Management:
+    [Header("Perk Management")]
+    public List<Perks> curPerks = new List<Perks>();
 
     //Interactions:
     [Header("Interactions")]
@@ -103,7 +114,7 @@ public class Player : NetworkBehaviour
                 Interactions();
                 if (revivingPlayer == true)
                 {
-                    revivingPlayer();
+                    RevivingPlayer();
                 }
             }
 
@@ -216,6 +227,14 @@ public class Player : NetworkBehaviour
                 hit.collider.GetComponent<Player>().beingRevived = true;
                 revivingPlayer = true;
             }
+            if (hit.collider.tag == "PerkMachine")
+            {
+                if (money >= hit.collider.GetComponent<PerkMachine>().Cost)
+                {
+                    money -= hit.collider.GetComponent<PerkMachine>().Cost;
+                    curPerks.Add(PerkData.AddPerk(hit.collider.GetComponent<PerkMachine>().Perk));
+                }
+            }
         }
     }
     #endregion
@@ -238,7 +257,7 @@ public class Player : NetworkBehaviour
         isDowned = true;
     }
 
-    public void revivingPlayer()
+    public void RevivingPlayer()
     {
 
     }
