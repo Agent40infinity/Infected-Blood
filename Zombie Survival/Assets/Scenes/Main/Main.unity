@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 126216413}
   - component: {fileID: 126216414}
+  - component: {fileID: 126216415}
   m_Layer: 0
   m_Name: IncreaseGunCpacity_PerkMachine
   m_TagString: PerkMachine
@@ -137,7 +138,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126216412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
@@ -156,6 +157,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkList: []
+--- !u!33 &126216415
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126216412}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,6 +276,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457481143}
   - component: {fileID: 457481144}
+  - component: {fileID: 457481145}
   m_Layer: 0
   m_Name: SpeedIncrease_PerkMachine
   m_TagString: PerkMachine
@@ -282,7 +292,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457481142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
@@ -301,6 +311,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkList: []
+--- !u!33 &457481145
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457481142}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &478191471
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +389,7 @@ GameObject:
   m_Component:
   - component: {fileID: 628668475}
   - component: {fileID: 628668474}
+  - component: {fileID: 628668476}
   m_Layer: 0
   m_Name: HealthIncrase_PerkMachine
   m_TagString: PerkMachine
@@ -399,12 +418,20 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628668473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &628668476
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628668473}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &645291183
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,6 +594,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081414118}
   - component: {fileID: 1081414119}
+  - component: {fileID: 1081414120}
   m_Layer: 0
   m_Name: InstantRevive_PerkMachine
   m_TagString: PerkMachine
@@ -582,7 +610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1081414117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
@@ -601,6 +629,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkList: []
+--- !u!33 &1081414120
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081414117}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1155588790
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,6 +647,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1155588791}
   - component: {fileID: 1155588792}
+  - component: {fileID: 1155588793}
   m_Layer: 0
   m_Name: Lifesteal_PerkMachine
   m_TagString: PerkMachine
@@ -626,7 +663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155588790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
@@ -645,6 +682,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkList: []
+--- !u!33 &1155588793
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155588790}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1183135477
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +870,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1833091917}
   - component: {fileID: 1833091918}
+  - component: {fileID: 1833091919}
   m_Layer: 0
   m_Name: DamageIncrease_PerkMachine
   m_TagString: PerkMachine
@@ -840,7 +886,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833091916}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
@@ -859,6 +905,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkList: []
+--- !u!33 &1833091919
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833091916}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1840829744
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,6 +923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840829745}
   - component: {fileID: 1840829746}
+  - component: {fileID: 1840829747}
   m_Layer: 0
   m_Name: FireRateIncrease_PerkMachine
   m_TagString: PerkMachine
@@ -884,7 +939,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840829744}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1753629043}
@@ -903,6 +958,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perkList: []
+--- !u!33 &1840829747
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840829744}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1963001467
 GameObject:
   m_ObjectHideFlags: 0
