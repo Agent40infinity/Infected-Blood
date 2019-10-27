@@ -60,12 +60,13 @@ public static class PerkData
             ID = id,
             Name = name,
             DamageIncrease = damageIncrease,
-            SpeedIncrease =speedIncrease,
+            SpeedIncrease = speedIncrease,
             FireRateIncrease = fireRateIncrease,
             InstantRevive = instantRevive,
             GunCapacityincrease = gunCapacityincrease,
             LifeSteal = lifeSteal,
-            HealthIncrease = healthIncrease
+            HealthIncrease = healthIncrease,
+            Perk = Type
         };
         return temp;
     }

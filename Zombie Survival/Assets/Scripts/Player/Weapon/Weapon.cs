@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Aiden Nathan.
+ *------------------------------------------------------------------------*/
+
 [System.Serializable]
 public class Weapon : MonoBehaviour
 {

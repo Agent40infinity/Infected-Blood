@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Perks : MonoBehaviour
 {
-    private int id = 0;
+    private int id;
     private new string name;
-    private float damageIncrease = 0.20f;
-    private float healthIncrease = 0.50f;
-    private float gunCapacityincrease = 0.50f;
-    private float lifeSteal = 0.10f;
-    private float instantRevive = 1f;
-    private float speedIncrease = 0.25f;
-    private float fireRateIncrease = 0.25f;
+    private float damageIncrease;
+    private float healthIncrease;
+    private float gunCapacityincrease;
+    private float lifeSteal;
+    private float instantRevive;
+    private float speedIncrease;
+    private float fireRateIncrease;
     private Texture2D perkIcon;
+    private PerkType perk;
 
 
     public int ID
@@ -67,6 +68,11 @@ public class Perks : MonoBehaviour
         set { perkIcon = value; }
     }
    
+    public PerkType Perk
+    {
+        get { return perk; }
+        set { perk = value; }
+    }
 }
  public enum PerkType
     {

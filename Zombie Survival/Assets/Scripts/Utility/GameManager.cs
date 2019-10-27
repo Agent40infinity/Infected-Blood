@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Aiden Nathan.
+ *------------------------------------------------------------------------*/
+
 public class GameManager : MonoBehaviour
 {
     //General
@@ -19,6 +23,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void Update()
+    {
+        Rounds();
+    }
+
+    public void Rounds()
     {
         if (enemiesDead == true && enemySpawner.finishedSpawning == true) //Checks whether or not all enemies are dead and that all enemies have ceased spawning to allow for a new round to start
         {

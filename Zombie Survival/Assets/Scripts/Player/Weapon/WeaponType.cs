@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Aiden Nathan.
+ *------------------------------------------------------------------------*/
+
 public static class WeaponType
 {
     public static Weapon AddWeapon(string Name)

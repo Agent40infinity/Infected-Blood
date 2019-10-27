@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using Mirror;
 
@@ -55,7 +56,7 @@ public class Player : NetworkBehaviour
 
     //Interactions:
     [Header("Interactions")]
-    public float interactRange = 5f;
+    public float interactRange = 10f;
     public bool revivingPlayer = false;
 
     //Health Management:
@@ -78,6 +79,30 @@ public class Player : NetworkBehaviour
         for (int i = 0; i < hitColliders.Length; i++)
         {
             if (hitColliders[i].gameObject.layer == 9) //Checks each gameObject that the collider hits to see if it is layered as "ground".
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    int GetNumberFromString(string word) //Allows for the trasnlation of strings into integers.
+    {
+        string number = Regex.Match(word, @"\d+").Value;
+
+        int result;
+        if (int.TryParse(number, out result))
+        {
+            return result;
+        }
+        return -1;
+    }
+
+    bool PerkCheck(PerkType perkInput)
+    {
+        for (int i = 0; i < curPerks.Count; i++)
+        {
+            if (curPerks[i].Perk == perkInput)
             {
                 return true;
             }
@@ -218,21 +243,45 @@ public class Player : NetworkBehaviour
     #region Interactions
     public void Interactions()
     {
-        RaycastHit hit;
-        Vector3 mousePosition = camera.GetComponentInChildren<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-        if (Physics.Raycast(mousePosition, camera.transform.forward, out hit, interactRange))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hit.collider.tag == "Player")
+            Vector3 mousePosition = camera.GetComponentInChildren<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+            RaycastHit hit;
+            if (Physics.Raycast(mousePosition, camera.transform.forward, out hit, interactRange))
             {
-                hit.collider.GetComponent<Player>().beingRevived = true;
-                revivingPlayer = true;
-            }
-            if (hit.collider.tag == "PerkMachine")
-            {
-                if (money >= hit.collider.GetComponent<PerkMachine>().Cost)
+                if (hit.collider.tag == "Player")
                 {
-                    money -= hit.collider.GetComponent<PerkMachine>().Cost;
-                    curPerks.Add(PerkData.AddPerk(hit.collider.GetComponent<PerkMachine>().Perk));
+                    hit.collider.GetComponent<Player>().beingRevived = true;
+                    revivingPlayer = true;
+                }
+                if (hit.collider.tag == "PerkMachine")
+                {
+                    PerkMachine perkHitRef = hit.collider.GetComponent<PerkMachine>();
+                    if (PerkCheck(perkHitRef.Perk) == false)
+                    {
+                        if (money >= perkHitRef.Cost)
+                        {
+                            money -= perkHitRef.Cost;
+                            curPerks.Add(PerkData.AddPerk(perkHitRef.Perk));
+                        }
+                    }
+                }
+                if (hit.collider.tag == "GunVendor")
+                {
+
+                }
+                if (hit.collider.tag == "Door")
+                {
+                    Door doorHitRef = hit.collider.GetComponentInParent<Door>();
+                    int doorIndex = GetNumberFromString(hit.collider.name);
+                    if (doorHitRef.doorOpen[doorIndex] == false)
+                    {
+                        if (money >= doorHitRef.cost[doorIndex])
+                        {
+                            money -= doorHitRef.cost[doorIndex];
+                            doorHitRef.OpenDoor(doorIndex);
+                        }
+                    }
                 }
             }
         }

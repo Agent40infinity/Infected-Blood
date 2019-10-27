@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Aiden Nathan.
+ *------------------------------------------------------------------------*/
+
 public class Enemy : MonoBehaviour
 {
     public GameObject player;
