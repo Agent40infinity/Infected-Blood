@@ -111,6 +111,18 @@ public class Player : NetworkBehaviour
     }
     #endregion
 
+    bool WeaponCheck(string weaponInput)
+    {
+        for (int i = 0; i < curWeapons.Count; i++)
+        {
+            if (curWeapons[i].Name == weaponInput)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     #region General
     public void Start() //Used to determine default values and grab references.
     {
@@ -268,7 +280,23 @@ public class Player : NetworkBehaviour
                 }
                 if (hit.collider.tag == "GunVendor")
                 {
-
+                    WeaponVendor weaponHitRef = hit.collider.GetComponent<WeaponVendor>();
+                    if (WeaponCheck(weaponHitRef.WeaponName) == false)
+                    {
+                        if (money >= weaponHitRef.Cost)
+                        {
+                            money -= weaponHitRef.Cost;
+                            curWeapons.Add(WeaponType.AddWeapon(weaponHitRef.WeaponName));
+                        }
+                    }
+                    else
+                    {
+                        if (money >= weaponHitRef.Cost)
+                        {
+                            money -= weaponHitRef.Cost;
+                            //Buy Ammo
+                        }
+                    }
                 }
                 if (hit.collider.tag == "Door")
                 {

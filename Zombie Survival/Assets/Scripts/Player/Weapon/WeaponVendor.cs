@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerkVendor : MonoBehaviour
+public class WeaponVendor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int cost;
+    private string weaponName;
+
+    public int Cost
     {
-        
+        get { return cost; }
+        set { cost = value; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public string WeaponName
     {
-        
+        get { return weaponName; }
+        set { weaponName = value; }
+    }
+
+    public void Awake()
+    {
+        string name = gameObject.name.Replace("_GunVendor", "");
+        WeaponName = name;
+
+        Debug.Log(weaponName);
     }
 }
