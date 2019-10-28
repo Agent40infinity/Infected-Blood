@@ -64,7 +64,10 @@ public class Player : NetworkBehaviour
     public int curHealth; //Current health of the player.
     public int maxHealth = 100; //Max health of the player.
     public bool isDowned = false; //Checks whether or not the player is downed and needs to be revived.
-    public bool beingRevived; //Checks whether or not the player is being revived
+    public bool beingRevived = false; //Checks whether or not the player is being revived
+    public bool playerDead = false;
+    public float timeTillDeath = 0;
+    public float deathTime = 15f;
 
     //References:
     [Header("References")]
@@ -127,6 +130,7 @@ public class Player : NetworkBehaviour
     public void Start() //Used to determine default values and grab references.
     {
         isDowned = false;
+        playerDead = false;
         curHealth = maxHealth;
         controller = gameObject.GetComponent<CharacterController>();
         camera = GameObject.FindGameObjectWithTag("PlayerHead");
@@ -144,18 +148,30 @@ public class Player : NetworkBehaviour
         //Debug.Log(IsGrounded());
         //if (isLocalPlayer)
         //{
+        if (!playerDead)
+        {
             if (!isDowned)
             {
                 Movement();
-                MouseMovement();
                 Interactions();
+
+                Shooting(0);
+
                 if (revivingPlayer == true)
                 {
                     RevivingPlayer();
                 }
             }
-
-        Shooting(0);
+            else
+            {
+                PlayerDying();
+            }
+        }
+        else
+        {
+            SpectatorMovement();
+        }
+        MouseMovement();
         //}
     }
     #endregion
@@ -210,6 +226,17 @@ public class Player : NetworkBehaviour
         camera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0); //applies movement for the Y axis.
     }
     #endregion
+
+    public void SpectatorMovement()
+    {
+        moveDirection.z = Input.GetAxis("Vertical");
+        moveDirection.x = Input.GetAxis("Horizontal");
+        moveDirection = transform.TransformDirection(moveDirection);
+        moveDirection.z *= speed;
+        moveDirection.x *= speed;
+        Debug.Log(moveDirection);
+        controller.Move(moveDirection * Time.deltaTime); //Applies movement.
+    }
 
     #region Shooting
     public void Shooting(int weaponIndex)
@@ -278,11 +305,13 @@ public class Player : NetworkBehaviour
                         }
                     }
                 }
-                if (hit.collider.tag == "GunVendor")
+                if (hit.collider.tag == "GunVendor")    
                 {
                     WeaponVendor weaponHitRef = hit.collider.GetComponent<WeaponVendor>();
+                    Debug.Log("Registered Weapon Vendor");
                     if (WeaponCheck(weaponHitRef.WeaponName) == false)
                     {
+                        Debug.Log("Name Check Complete Weapon Vendor");
                         if (money >= weaponHitRef.Cost)
                         {
                             money -= weaponHitRef.Cost;
@@ -294,7 +323,13 @@ public class Player : NetworkBehaviour
                         if (money >= weaponHitRef.Cost)
                         {
                             money -= weaponHitRef.Cost;
-                            //Buy Ammo
+                            for (int i = 0; i < curWeapons.Count; i++)
+                            {
+                                if (curWeapons[i].Name == weaponHitRef.WeaponName)
+                                {
+                                    curWeapons[i].Ammo = curWeapons[i].AmmoMax;
+                                }
+                            }
                         }
                     }
                 }
@@ -325,18 +360,33 @@ public class Player : NetworkBehaviour
         }
         else
         {
-            GoDown();
+            isDowned = true;
         }
-    }
-
-    public void GoDown()
-    {
-        isDowned = true;
     }
 
     public void RevivingPlayer()
     {
 
+    }
+
+    public void PlayerDying()
+    {
+        timeTillDeath += Time.deltaTime;
+        if (timeTillDeath >= deathTime)
+        {
+            StartCoroutine(SetupSpectator());
+        }
+    }
+
+    public IEnumerator SetupSpectator()
+    {
+        playerDead = true;
+        isDowned = false;
+        timeTillDeath = 0;
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+        Debug.Log("Death Initialized");
+        yield return new WaitForEndOfFrame();
     }
     #endregion
 

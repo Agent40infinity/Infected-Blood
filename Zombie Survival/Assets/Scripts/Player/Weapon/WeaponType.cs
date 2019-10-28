@@ -78,6 +78,7 @@ public static class WeaponType
             ClipSize = clipSize,
             Clip = clip,
             Ammo = ammo,
+            AmmoMax = ammo,
             Function = function,
             Gun = gunObject
         };

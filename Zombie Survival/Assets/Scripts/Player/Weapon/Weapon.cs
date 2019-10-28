@@ -17,6 +17,7 @@ public class Weapon : MonoBehaviour
     private float spread;
     private float range;
     private int ammo;
+    private int ammoMax;
     private int clipSize;
     private int clip;
     private FireType function;
@@ -77,6 +78,12 @@ public class Weapon : MonoBehaviour
     {
         get { return ammo; }
         set { ammo = value; }
+    }
+
+    public int AmmoMax
+    {
+        get { return ammoMax; }
+        set { ammoMax = value; }
     }
 
     public FireType Function
