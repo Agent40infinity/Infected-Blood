@@ -39,7 +39,7 @@ public class Perks : MonoBehaviour
     }
     public float GunCapacityincrease
     {
-        get { return gunCapacityincrease; }
+        get { return gunCapacityIncrease; }
         set { gunCapacityincrease = value; }
     }
     public float LifeSteal
@@ -72,6 +72,28 @@ public class Perks : MonoBehaviour
     {
         get { return perk; }
         set { perk = value; }
+    }
+
+    public ApplyStats(Player player) // This function assigns the player additioanl stats depending on the perk they have purchased
+    {
+        player.instantRevive += instantRevive;
+        player.healthIncrease += healthIncrease;
+        player.damageIncrease += damageincrease;
+        player.fireRateIncrease += fireRateIncrease;
+        player.speedIncrease += speedIncrease;
+        player.lifeSteal += lifeSteal;
+        player.gunCapacityIncrease += gunCapacityIncrease;
+    }
+
+    public OnDestroy(Player player) // If the player were to go down and or die the perks they currently hold are removed
+    {
+        player.maxhealth -= healthIncrease;
+        player.instantRevive -= instantRevive;
+        player.damageIncrease -= damageIncrease;
+        player.fireRateincrease -= fireRateIncrease;
+        player.speedIncrease -= speedIncrease;
+        player.lifeSteal -= lifeSteal;
+        player.gunCapacityIncrease -= gunCapacityIncrease;
     }
 }
  public enum PerkType
