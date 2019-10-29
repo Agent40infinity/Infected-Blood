@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
                 StartCoroutine(Spawn(i, sT)); //Spawns an enemy
                 GameManager.enemiesAlive++;
                 enemiesToSpawn--; //Decreases the enemiesToSpawn counter
-                sT += 3; //Adds to the existing spawn rate timer
+                //sT += 3; //Adds to the existing spawn rate timer
                 if (enemiesToSpawn > 0 && i == spawnPoints.Length - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
                 {
                     i = 0; //resets the loop
