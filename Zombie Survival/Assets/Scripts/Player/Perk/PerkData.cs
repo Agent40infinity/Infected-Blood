@@ -63,7 +63,7 @@ public static class PerkData
             SpeedIncrease = speedIncrease,
             FireRateIncrease = fireRateIncrease,
             InstantRevive = instantRevive,
-            GunCapacityincrease = gunCapacityincrease,
+            GunCapacityIncrease = gunCapacityincrease,
             LifeSteal = lifeSteal,
             HealthIncrease = healthIncrease,
             Perk = Type

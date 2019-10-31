@@ -8,7 +8,7 @@ public class Perks : MonoBehaviour
     private new string name;
     private float damageIncrease;
     private float healthIncrease;
-    private float gunCapacityincrease;
+    private float gunCapacityIncrease;
     private float lifeSteal;
     private float instantRevive;
     private float speedIncrease;
@@ -37,10 +37,10 @@ public class Perks : MonoBehaviour
         get { return healthIncrease; }
         set { healthIncrease = value; }
     }
-    public float GunCapacityincrease
+    public float GunCapacityIncrease
     {
         get { return gunCapacityIncrease; }
-        set { gunCapacityincrease = value; }
+        set { gunCapacityIncrease = value; }
     }
     public float LifeSteal
     {
@@ -74,26 +74,26 @@ public class Perks : MonoBehaviour
         set { perk = value; }
     }
 
-    public ApplyStats(Player player) // This function assigns the player additioanl stats depending on the perk they have purchased
+    public void ApplyStats(Player player) // This function assigns the player additioanl stats depending on the perk they have purchased
     {
-        player.instantRevive += instantRevive;
-        player.healthIncrease += healthIncrease;
-        player.damageIncrease += damageincrease;
-        player.fireRateIncrease += fireRateIncrease;
-        player.speedIncrease += speedIncrease;
-        player.lifeSteal += lifeSteal;
-        player.gunCapacityIncrease += gunCapacityIncrease;
+        //player.instantRevive += instantRevive;
+        //player.healthIncrease += healthIncrease;
+        //player.damageIncrease += damageincrease;
+        //player.fireRateIncrease += fireRateIncrease;
+        //player.speedIncrease += speedIncrease;
+        //player.lifeSteal += lifeSteal;
+        //player.gunCapacityIncrease += gunCapacityIncrease;
     }
 
-    public OnDestroy(Player player) // If the player were to go down and or die the perks they currently hold are removed
+    public void OnDestroy() // If the player were to go down and or die the perks they currently hold are removed
     {
-        player.maxhealth -= healthIncrease;
-        player.instantRevive -= instantRevive;
-        player.damageIncrease -= damageIncrease;
-        player.fireRateincrease -= fireRateIncrease;
-        player.speedIncrease -= speedIncrease;
-        player.lifeSteal -= lifeSteal;
-        player.gunCapacityIncrease -= gunCapacityIncrease;
+        //player.maxhealth -= healthIncrease;
+        //player.instantRevive -= instantRevive;
+        //player.damageIncrease -= damageIncrease;
+        //player.fireRateincrease -= fireRateIncrease;
+        //player.speedIncrease -= speedIncrease;
+        //player.lifeSteal -= lifeSteal;
+        //player.gunCapacityIncrease -= gunCapacityIncrease;
     }
 }
  public enum PerkType
