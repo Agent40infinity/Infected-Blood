@@ -19,7 +19,7 @@ public class Player : NetworkBehaviour
     public int money = 0;
     public int downs = 0;
     public int kills = 0;
-    
+
     //Movement:
     [Header("Physics")]
     public Vector3 moveDirection; //Vector3 used to store the movement values.
@@ -140,7 +140,7 @@ public class Player : NetworkBehaviour
         shotCooldown = curWeapons[0].FireRate;
 
         Cursor.lockState = CursorLockMode.Locked;
-        
+
     }
 
     public void Update() //Used to make reference to the sub-routines/methods.
@@ -186,7 +186,7 @@ public class Player : NetworkBehaviour
         {
             moveDirection.y = 0;
             gravityIncreaseTimer = 0;
-            appliedGravity = gravity;   
+            appliedGravity = gravity;
             if (Input.GetButtonDown("Jump")) //Defaults back to default jump.
             {
                 moveDirection.y += jumpSpeed;
@@ -267,7 +267,7 @@ public class Player : NetworkBehaviour
         {
             shotCooldown -= Time.deltaTime;
         }
-      
+
     }
 
     public IEnumerator Reload(int weaponIndex)
@@ -308,7 +308,7 @@ public class Player : NetworkBehaviour
                         }
                     }
                 }
-                if (hit.collider.tag == "GunVendor")    
+                if (hit.collider.tag == "GunVendor")
                 {
                     WeaponVendor weaponHitRef = hit.collider.GetComponent<WeaponVendor>();
                     Debug.Log("Registered Weapon Vendor");
