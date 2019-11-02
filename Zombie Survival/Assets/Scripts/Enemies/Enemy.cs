@@ -9,17 +9,28 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    //General:
+    public float attackDistance = 2f;
+    public float attackRange = 4f;
+    public int damage = 20;
+
+    //References:
     public GameObject player;
     public NavMeshAgent nav;
 
     public void Start()
     {
-        player = GameObject.FindWithTag("Player");
         nav = gameObject.GetComponent<NavMeshAgent>();
+        player = GameObject.FindWithTag("Player");
     }
 
     public void Update()
     {
+        AI();
+    }
+
+    public void AI()
+    { 
         //Collider[] inRange = Physics.OverlapSphere(gameObject.transform.position, 10f);
         //for (int i = 0; i < inRange.Length; i++)
         //{
@@ -28,7 +39,36 @@ public class Enemy : MonoBehaviour
         //        player = inRange[i].gameObject;
         //    }
         //}
-        nav.SetDestination(player.transform.position);
+
+        if (player != null)
+        {
+            float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
+            if (distance > attackDistance)
+            {
+                nav.enabled = true;
+                nav.SetDestination(player.transform.position);
+            }
+            else
+            {
+                nav.enabled = false;
+                StartCoroutine(Attack());
+            }
+        }
+    }
+
+    public IEnumerator Attack()
+    {
+        yield return new WaitForSeconds(0.2f);
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, transform.forward, Color.red, 5f);
+        if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))
+        {
+            if (hit.collider.tag == "Player")
+            {
+                Player playerHitRef = hit.collider.gameObject.GetComponent<Player>();
+                playerHitRef.TakeDamage(damage);
+            }
+        }
     }
 
     public void Death()

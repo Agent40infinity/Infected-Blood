@@ -229,8 +229,11 @@ public class Player : NetworkBehaviour
 
     public void SpectatorMovement()
     {
-        moveDirection.z = Input.GetAxis("Vertical");
-        moveDirection.x = Input.GetAxis("Horizontal");
+        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        if (Input.GetButton("Spectate"))
+        {
+            moveDirection.y = Input.GetAxis("Spectate") * speed;
+        }
         moveDirection = transform.TransformDirection(moveDirection);
         moveDirection.z *= speed;
         moveDirection.x *= speed;
@@ -354,11 +357,8 @@ public class Player : NetworkBehaviour
     #region Health Management
     public void TakeDamage(int damageDealt)
     {
-        if (curHealth > 0)
-        {
-            curHealth -= damageDealt;
-        }
-        else
+        curHealth -= damageDealt;
+        if (curHealth <= 0)
         {
             isDowned = true;
         }
@@ -381,11 +381,23 @@ public class Player : NetworkBehaviour
     public IEnumerator SetupSpectator()
     {
         playerDead = true;
+        GameManager.playersDead.Add(this);
         isDowned = false;
         timeTillDeath = 0;
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
         Debug.Log("Death Initialized");
+        yield return new WaitForEndOfFrame();
+    }
+
+    public IEnumerator Revived(Transform spawnPos)
+    {
+        gameObject.transform.position = spawnPos.position;
+        curHealth = maxHealth;
+        playerDead = false;
+        isDowned = false;
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
         yield return new WaitForEndOfFrame();
     }
     #endregion

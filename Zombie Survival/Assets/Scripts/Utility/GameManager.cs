@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int round = 0;
     public int enemiesPerRound = 8;
     public static int enemiesAlive;
+    public static List<Player> playersDead = new List<Player>();
+    public Transform[] spawnPos;
 
     //References:
     public EnemySpawner enemySpawner;
@@ -20,11 +22,16 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        spawnPos = GameObject.Find("SpawnPos").GetComponentsInChildren<Transform>();
     }
 
     public void Update()
     {
         Rounds();
+        for (int i = 0; i < playersDead.Count; i++)
+        {
+            Debug.Log(playersDead[i]);
+        }
     }
 
     public void Rounds()
@@ -36,6 +43,7 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(IncreaseDifficulty());
             }
+            StartCoroutine(RevivePlayers());
             enemySpawner.enemiesToSpawn = enemiesPerRound;
             enemySpawner.enemiesSpawning = true;
             enemySpawner.finishedSpawning = false;
@@ -46,6 +54,16 @@ public class GameManager : MonoBehaviour
         {
             enemiesDead = true;
         }
+    }
+
+    IEnumerator RevivePlayers()
+    {
+        for (int i = 0; i < playersDead.Count; i++)
+        {
+            StartCoroutine(playersDead[i].Revived(spawnPos[i + 1]));
+            playersDead.RemoveAt(i);
+        }
+        yield return new WaitForEndOfFrame();
     }
 
     IEnumerator IncreaseDifficulty()
