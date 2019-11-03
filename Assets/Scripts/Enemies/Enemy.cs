@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator Attack()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.5f);
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.forward, Color.red, 5f);
         if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange))

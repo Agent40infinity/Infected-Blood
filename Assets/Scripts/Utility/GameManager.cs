@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public static List<Player> playersDead = new List<Player>();
     public Transform[] spawnPos;
 
+    GameObject[] players;
+    public int[] playerKills;
+
     //References:
     public EnemySpawner enemySpawner;
 
@@ -23,14 +26,25 @@ public class GameManager : MonoBehaviour
     {
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         spawnPos = GameObject.Find("SpawnPos").GetComponentsInChildren<Transform>();
+        players = GameObject.FindGameObjectsWithTag("Player");
     }
 
     public void Update()
     {
         Rounds();
+        GetPlayerData();
         for (int i = 0; i < playersDead.Count; i++)
         {
             Debug.Log(playersDead[i]);
+        }
+    }
+
+    public void GetPlayerData()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            Player playerRef = players[i].GetComponent<Player>();
+            playerKills[i] = playerRef.kills; 
         }
     }
 

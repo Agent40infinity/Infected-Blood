@@ -19,6 +19,7 @@ public class Player : NetworkBehaviour
     public int money = 0;
     public int downs = 0;
     public int kills = 0;
+    public int deaths = 0;
 
     //Movement:
     [Header("Physics")]
