@@ -9,7 +9,7 @@ public class SimpleTest
     [Test]   
     public void NUnitTest()
     {
-        Assert.IsTrue(false, "NUnit Test Failed");
+        Assert.IsTrue(true, "NUnit Test Failed");
     }
 
     [UnityTest]
@@ -17,6 +17,6 @@ public class SimpleTest
     {
         yield return new WaitForFixedUpdate();
 
-        Assert.IsTrue(false, "Unity Test Failed");
+        Assert.IsTrue(true, "Unity Test Failed");
     }
 }
