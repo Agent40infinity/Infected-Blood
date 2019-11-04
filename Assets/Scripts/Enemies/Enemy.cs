@@ -13,33 +13,58 @@ public class Enemy : MonoBehaviour
     public float attackDistance = 2f;
     public float attackRange = 4f;
     public int damage = 20;
+    public float detectionRadius = 5f;
 
     //References:
-    public GameObject player;
+    public Player player;
     public NavMeshAgent nav;
 
     public void Start()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
-        player = GameObject.FindWithTag("Player");
+        player = FindObjectOfType<Player>();
+
+        GetClosestPlayer();
     }
 
     public void Update()
     {
         AI();
+
+        if (player)
+        {
+            if (player.playerDead == true)
+            {
+                player = null;
+            }
+        }
+    }
+
+    public Player GetClosestPlayer()
+    {
+        Player result = null;
+        float minDistance = float.PositiveInfinity;
+        Collider[] hits = Physics.OverlapSphere(gameObject.transform.position, detectionRadius);
+
+        foreach (var hit in hits)
+        {
+            if (hit.tag == "Player")
+            {
+                Vector3 playerPosition = hit.transform.position;
+                Vector3 enemyPosition = transform.position;
+                float distance = Vector3.Distance(playerPosition, enemyPosition);
+                if (distance < minDistance)
+                {
+                    result = hit.GetComponent<Player>();
+                    minDistance = distance;
+                }
+            }
+        }
+        return result;
     }
 
     public void AI()
-    { 
-        //Collider[] inRange = Physics.OverlapSphere(gameObject.transform.position, 10f);
-        //for (int i = 0; i < inRange.Length; i++)
-        //{
-        //    if (inRange[i].tag == "Player" && (Mathf.Abs(player.transform.position.x - gameObject.transform.position.x) > 10 || Mathf.Abs(player.transform.position.z - gameObject.transform.position.x) > 10))
-        //    {
-        //        player = inRange[i].gameObject;
-        //    }
-        //}
-
+    {
         if (player != null)
         {
             float distance = Vector3.Distance(player.transform.position, gameObject.transform.position);
@@ -84,5 +109,6 @@ public class Enemy : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

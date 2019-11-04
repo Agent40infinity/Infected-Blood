@@ -236,8 +236,8 @@ public class Player : NetworkBehaviour
             moveDirection.y = Input.GetAxis("Spectate") * speed;
         }
         moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection.z *= speed;
-        moveDirection.x *= speed;
+        moveDirection.z *= (speed * 2);
+        moveDirection.x *= (speed * 2);
         Debug.Log(moveDirection);
         controller.Move(moveDirection * Time.deltaTime); //Applies movement.
     }
