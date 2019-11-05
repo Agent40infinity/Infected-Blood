@@ -441,7 +441,7 @@ GameObject:
   - component: {fileID: 1262835307}
   - component: {fileID: 1262835306}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: NetworkManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -534,7 +534,7 @@ MonoBehaviour:
   serverTickRate: 30
   showDebugMessages: 0
   offlineScene: Menu
-  onlineScene: Menu
+  onlineScene: Main
   transport: {fileID: 1262835307}
   networkAddress: localhost
   maxConnections: 4

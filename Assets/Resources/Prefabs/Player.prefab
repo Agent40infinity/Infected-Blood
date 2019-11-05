@@ -209,6 +209,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  score: 0
+  money: 99999999
+  downs: 0
+  kills: 0
+  deaths: 0
   moveDirection: {x: 0, y: 0, z: 0}
   jumpSpeed: 4
   speed: 5
@@ -219,14 +224,24 @@ MonoBehaviour:
   increaseTimer: 0
   groundedOverlay: {x: 0.2, y: 0.1, z: 0.2}
   groundDistance: {x: 0, y: -1, z: 0}
-  curWeapons: []
-  shotCooldown: 0
-  canFire: 1
   sensX: 1.5
   sensY: 1.5
   minY: -65
   maxY: 65
   rotationY: 0
+  curWeapons: []
+  shotCooldown: 0
+  canFire: 1
+  curPerks: []
+  interactRange: 10
+  revivingPlayer: 0
+  curHealth: 0
+  maxHealth: 100
+  isDowned: 0
+  beingRevived: 0
+  playerDead: 0
+  timeTillDeath: 0
+  deathTime: 1
   controller: {fileID: 0}
   camera: {fileID: 5910181465415001387}
   hand: {fileID: 0}
@@ -280,7 +295,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 3383358515
+  m_SceneId: 1828739312
 --- !u!114 &2875207223456077659
 MonoBehaviour:
   m_ObjectHideFlags: 0

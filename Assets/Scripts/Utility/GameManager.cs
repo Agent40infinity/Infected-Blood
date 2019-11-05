@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public Transform[] spawnPos;
 
     GameObject[] players;
-    public int[] playerKills;
+    public int[] playerKills = new int[4];
 
     //References:
     public EnemySpawner enemySpawner;
@@ -33,10 +33,6 @@ public class GameManager : MonoBehaviour
     {
         Rounds();
         GetPlayerData();
-        for (int i = 0; i < playersDead.Count; i++)
-        {
-            Debug.Log(playersDead[i]);
-        }
     }
 
     public void GetPlayerData()
