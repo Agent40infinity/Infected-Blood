@@ -9,6 +9,7 @@ TagManager:
   - PerkMachine
   - Door
   - GunVendor
+  - SpawnRooms
   layers:
   - Default
   - TransparentFX
