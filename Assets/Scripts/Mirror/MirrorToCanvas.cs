@@ -1,41 +1,25 @@
-﻿// vis2k: GUILayout instead of spacey += ...; removed Update hotkeys to avoid
-// confusion if someone accidentally presses one.
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using UnityEngine;
 
 namespace Mirror
 {
-    /// <summary>
-    /// An extension for the NetworkManager that displays a default HUD for controlling the network state of the game.
-    /// <para>This component also shows useful internal state for the networking system in the inspector window of the editor. It allows users to view connections, networked objects, message handlers, and packet statistics. This information can be helpful when debugging networked games.</para>
-    /// </summary>
+    //Jacob fresh WIP 
     [AddComponentMenu("Network/NetworkManagerHUD")]
     [RequireComponent(typeof(NetworkManager))]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    [HelpURL("https://mirror-networking.com/docs/Components/NetworkManagerHUD.html")]
-    public class NetworkManagerHUD : MonoBehaviour
+    public class MirrorToCanvas : MonoBehaviour
     {
         NetworkManager manager;
-
-        /// <summary>
-        /// Whether to show the default control HUD at runtime.
-        /// </summary>
-        public bool showGUI = true;
-
-        /// <summary>
-        /// The horizontal offset in pixels to draw the HUD runtime GUI at.
-        /// </summary>
-        public int offsetX;
-
-        /// <summary>
-        /// The vertical offset in pixels to draw the HUD runtime GUI at.
-        /// </summary>
-        public int offsetY;
+        
+        public bool showGUI = true; // Whether to show the default control HUD at runtime.
+        public int offsetX; // The horizontal placement in pixels to draw the HUD runtime GUI at 
+        public int offsetY; // The vertical placement in pixels to draw the HUD runtime GUI at.
 
         void Awake()
         {
             manager = GetComponent<NetworkManager>();
         }
+
+
 
         void OnGUI()
         {
