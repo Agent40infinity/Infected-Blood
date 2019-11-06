@@ -18,15 +18,34 @@ public class EnemySpawner : MonoBehaviour
     public Transform[] spawnPoints;
     public GameObject enemyParent;
 
+    //Tests
+    public RoomData[] roomParents;
+    public List<Transform> activeSpawners = new List<Transform>();
+
+    public struct RoomData
+    {
+        public GameObject room;
+        public Transform[] spawnPoints;
+    }
+
     public void Start()
     {
         spawnParent = GameObject.Find("Spawnpoints");
         spawnPoints = spawnParent.GetComponentsInChildren<Transform>();
         enemyParent = Resources.Load("Prefabs/Enemy") as GameObject;
-        for (int i = 0; i < spawnPoints.Length; i++)
+
+        roomParents = new RoomData[GameObject.FindGameObjectsWithTag("SpawnRooms").Length];
+        for (int i = 0; i < roomParents.Length; i++)
         {
-            Debug.Log(spawnPoints[i].position);
+            roomParents[i].room = GameObject.FindGameObjectsWithTag("SpawnRooms")[i];
+            roomParents[i].spawnPoints = roomParents[i].room.GetComponentsInChildren<Transform>();
+            for (int x = 0; x < roomParents[i].spawnPoints.Length; x++)
+            {
+                Debug.Log(roomParents[i].spawnPoints[x]);
+            }
         }
+
+        UnlockRoom(0);
     }
 
     public void Update()
@@ -38,20 +57,20 @@ public class EnemySpawner : MonoBehaviour
 
         if (enemiesSpawning == true) //Checks whether or not enemies are needed to be spawned
         {
-            int sT = 0;
-            for (int i = 1; i < spawnPoints.Length; i++) //Used to cycle through spawnpoints
+            int sT = 0; //25
+            for (int i = 0; i < activeSpawners.Count; i++) //Used to cycle through spawnpoints
             { 
                 StartCoroutine(Spawn(i, sT)); //Spawns an enemy
                 GameManager.enemiesAlive++;
                 enemiesToSpawn--; //Decreases the enemiesToSpawn counter
                 //sT += 3; //Adds to the existing spawn rate timer
-                if (enemiesToSpawn > 0 && i == spawnPoints.Length - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
+                if (enemiesToSpawn > 0 && i == activeSpawners.Count - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
                 {
-                    i = 0; //resets the loop
+                    i = -1; //resets the loop
                 }
                 else if (enemiesToSpawn == 0) //If the enemiesToSpawn count becomes 0, ends enemy spawning
                 {
-                    i = spawnPoints.Length; //ends the loop
+                    i = activeSpawners.Count; //ends the loop
                     enemiesSpawning = false; //Ceases the ability to spawn more enemies
                     finishedSpawning = true; 
                 }
@@ -59,9 +78,17 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void UnlockRoom(int index)
+    {
+        for (int i = 1; i < roomParents[index].spawnPoints.Length; i++)
+        {
+            activeSpawners.Add(roomParents[index].spawnPoints[i]);
+        }
+    }
+
     IEnumerator Spawn(int spawnIndex, int spawnTime) //Used to spawn enemies
     {
         yield return new WaitForSeconds(spawnTime); //Determines the amount of time between each set spawn
-        GameObject enemy = Instantiate(enemyParent, spawnPoints[spawnIndex].position, Quaternion.identity, spawnPoints[spawnIndex]); //Instantiates a new enemy based on the spawnpoint arry's index
+        GameObject enemy = Instantiate(enemyParent, activeSpawners[spawnIndex].position, Quaternion.identity, activeSpawners[spawnIndex]); //Instantiates a new enemy based on the spawnpoint arry's index
     }
 }
