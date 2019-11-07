@@ -58,21 +58,34 @@ public class EnemySpawner : MonoBehaviour
         if (enemiesSpawning == true) //Checks whether or not enemies are needed to be spawned
         {
             int sT = 0; //25
+            int spawnCap = 0;
             for (int i = 0; i < activeSpawners.Count; i++) //Used to cycle through spawnpoints
-            { 
-                StartCoroutine(Spawn(i, sT)); //Spawns an enemy
-                GameManager.enemiesAlive++;
-                enemiesToSpawn--; //Decreases the enemiesToSpawn counter
-                //sT += 3; //Adds to the existing spawn rate timer
-                if (enemiesToSpawn > 0 && i == activeSpawners.Count - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
+            {
+                if (GameManager.enemiesAlive <= 100)
                 {
-                    i = -1; //resets the loop
+                    StartCoroutine(Spawn(i, sT, spawnCap)); //Spawns an enemy
+                    spawnCap++;
+                    enemiesToSpawn--; //Decreases the enemiesToSpawn counter
+
+                    if (spawnCap == activeSpawners.Count)
+                    {
+                        sT += 4; //Adds to the existing spawn rate timer
+                        spawnCap = 0;
+                    }
+                    if (enemiesToSpawn > 0 && i == activeSpawners.Count - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
+                    {
+                        i = -1; //resets the loop
+                    }
+                    else if (enemiesToSpawn == 0) //If the enemiesToSpawn count becomes 0, ends enemy spawning
+                    {
+                        i = activeSpawners.Count; //ends the loop
+                        enemiesSpawning = false; //Ceases the ability to spawn more enemies
+                        finishedSpawning = true;
+                    }
                 }
-                else if (enemiesToSpawn == 0) //If the enemiesToSpawn count becomes 0, ends enemy spawning
+                else
                 {
-                    i = activeSpawners.Count; //ends the loop
-                    enemiesSpawning = false; //Ceases the ability to spawn more enemies
-                    finishedSpawning = true; 
+                    i--;
                 }
             }
         }
@@ -86,9 +99,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    IEnumerator Spawn(int spawnIndex, int spawnTime) //Used to spawn enemies
+    IEnumerator Spawn(int spawnIndex, int spawnTime, int spawnCap) //Used to spawn enemies
     {
         yield return new WaitForSeconds(spawnTime); //Determines the amount of time between each set spawn
+        GameManager.enemiesAlive++;
         GameObject enemy = Instantiate(enemyParent, activeSpawners[spawnIndex].position, Quaternion.identity, activeSpawners[spawnIndex]); //Instantiates a new enemy based on the spawnpoint arry's index
     }
 }

@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     {
         Rounds();
         GetPlayerData();
+
+        Debug.Log("Enemies Alive: " + enemiesAlive);
     }
 
     public void GetPlayerData()
@@ -82,7 +84,7 @@ public class GameManager : MonoBehaviour
         {
             enemiesPerRound = (int)(enemiesPerRound * 1.4f);
         }
-        else if (enemiesPerRound < 250)
+        else if (enemiesPerRound < 350)
         {
             enemiesPerRound = (int)(enemiesPerRound * 1.15f);
         }
