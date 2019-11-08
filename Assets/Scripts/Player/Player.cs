@@ -367,7 +367,7 @@ public class Player : NetworkBehaviour
 
     public void RevivingPlayer()
     {
-
+        StartCoroutine(Revived(transform));
     }
 
     public void PlayerDying()
