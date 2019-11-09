@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 /*--------------------------------------------------------------------------
  * Script Created by: Aiden Nathan.
  *------------------------------------------------------------------------*/
 
 [System.Serializable]
-public class Weapon : MonoBehaviour
+public class Weapon : NetworkBehaviour
 {
     //General:
     private new string name;
@@ -110,7 +111,7 @@ public class Weapon : MonoBehaviour
                 {
                     if (hit.collider.tag == "Enemy")
                     {
-                        hit.collider.gameObject.GetComponent<Enemy>().Death();
+                        hit.collider.gameObject.GetComponent<Enemy>().CmdDeath();
                     }
                 }
                 break;

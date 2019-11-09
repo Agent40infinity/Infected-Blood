@@ -91,6 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051895414}
+  - component: {fileID: 4796591175673105577}
+  - component: {fileID: 1293034281968574811}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -112,6 +114,37 @@ Transform:
   m_Father: {fileID: 8203885118739774111}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4796591175673105577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051895413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverOnly: 0
+  localPlayerAuthority: 1
+  m_AssetId: 5e2386f116bea45428f3328007c3082c
+  m_SceneId: 0
+--- !u!114 &1293034281968574811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051895413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  compressRotation: 1
 --- !u!1 &1485906095886096985
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +277,7 @@ MonoBehaviour:
   deathTime: 1
   controller: {fileID: 0}
   camera: {fileID: 5910181465415001387}
-  hand: {fileID: 0}
+  hand: {fileID: 1051895413}
   ground:
     serializedVersion: 2
     m_Bits: 512
@@ -320,6 +353,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8203885118739774111}
+  - component: {fileID: 2765590971525067947}
+  - component: {fileID: 8046942614657926497}
   m_Layer: 0
   m_Name: Head
   m_TagString: PlayerHead
@@ -343,3 +378,34 @@ Transform:
   m_Father: {fileID: 1485906095886096981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2765590971525067947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910181465415001387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serverOnly: 0
+  localPlayerAuthority: 1
+  m_AssetId: 5e2386f116bea45428f3328007c3082c
+  m_SceneId: 0
+--- !u!114 &8046942614657926497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5910181465415001387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  compressRotation: 1

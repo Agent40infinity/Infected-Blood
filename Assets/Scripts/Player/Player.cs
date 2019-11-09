@@ -113,7 +113,6 @@ public class Player : NetworkBehaviour
         }
         return false;
     }
-    #endregion
 
     bool WeaponCheck(string weaponInput)
     {
@@ -126,6 +125,7 @@ public class Player : NetworkBehaviour
         }
         return false;
     }
+    #endregion
 
     #region General
     public void Start() //Used to determine default values and grab references.
@@ -134,8 +134,8 @@ public class Player : NetworkBehaviour
         playerDead = false;
         curHealth = maxHealth;
         controller = gameObject.GetComponent<CharacterController>();
-        camera = GameObject.FindGameObjectWithTag("PlayerHead");
-        hand = GameObject.Find("Hand");
+        //camera = GameObject.FindGameObjectWithTag("PlayerHead");
+        //hand = GameObject.Find("Hand");
         curWeapons.Add(WeaponType.AddWeapon("Pistol"));
         Instantiate(curWeapons[0].Gun, hand.transform.position, Quaternion.identity, hand.transform);
         shotCooldown = curWeapons[0].FireRate;
@@ -147,33 +147,33 @@ public class Player : NetworkBehaviour
     public void Update() //Used to make reference to the sub-routines/methods.
     {
         //Debug.Log(IsGrounded());
-        //if (isLocalPlayer)
-        //{
-        if (!playerDead)
+        if (isLocalPlayer)
         {
-            if (!isDowned)
+            if (!playerDead)
             {
-                Movement();
-                Interactions();
-
-                Shooting(0);
-
-                if (revivingPlayer == true)
+                if (!isDowned)
                 {
-                    RevivingPlayer();
+                    Movement();
+                    CmdInteractions();
+
+                    CmdShooting(0);
+
+                    if (revivingPlayer == true)
+                    {
+                        RevivingPlayer();
+                    }
+                }
+                else
+                {
+                    PlayerDying();
                 }
             }
             else
             {
-                PlayerDying();
+                SpectatorMovement();
             }
+            MouseMovement();
         }
-        else
-        {
-            SpectatorMovement();
-        }
-        MouseMovement();
-        //}
     }
     #endregion
 
@@ -243,7 +243,8 @@ public class Player : NetworkBehaviour
     }
 
     #region Shooting
-    public void Shooting(int weaponIndex)
+    [Command]
+    public void CmdShooting(int weaponIndex)
     {
         Debug.Log("Clip: " + curWeapons[weaponIndex].Clip);
         Debug.Log("Ammo: " + curWeapons[weaponIndex].Ammo);
@@ -284,7 +285,8 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region Interactions
-    public void Interactions()
+    [Command]
+    public void CmdInteractions()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {

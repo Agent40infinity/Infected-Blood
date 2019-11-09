@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Mirror;
 
 /*--------------------------------------------------------------------------
  * Script Created by: Aiden Nathan.
  *------------------------------------------------------------------------*/
 
-public class Enemy : MonoBehaviour
+public class Enemy : NetworkBehaviour
 {
     //General:
     public float attackDistance = 2f;
@@ -96,7 +97,8 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void Death()
+    [Command]
+    public void CmdDeath()
     {
         Destroy(this.gameObject);
     }
