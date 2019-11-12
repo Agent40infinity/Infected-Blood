@@ -95,9 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b13e65e3f75f6c419e485a154af14b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   attackDistance: 2
   attackRange: 4
-  player: {fileID: 1485906095886096985, guid: 5e2386f116bea45428f3328007c3082c, type: 3}
+  damage: 20
+  detectionRadius: 5
+  player: {fileID: 0}
   nav: {fileID: 0}
 --- !u!136 &215834468385653027
 CapsuleCollider:
@@ -163,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverOnly: 1
-  localPlayerAuthority: 0
+  serverOnly: 0
+  localPlayerAuthority: 1
   m_AssetId: 851dbbe1b80f0cb458e11f44545088d7
   m_SceneId: 0
 --- !u!114 &8238387226380372699

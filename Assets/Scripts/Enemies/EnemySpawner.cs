@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 /*--------------------------------------------------------------------------
  * Script Created by: Aiden Nathan.
  *------------------------------------------------------------------------*/
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : NetworkBehaviour
 {
     #region Variables
     //General:
@@ -66,7 +67,7 @@ public class EnemySpawner : MonoBehaviour
             int spawnCap = 0; //how many enemies can spawn at a time before the spawn timer increases
             for (int i = pausedIndex; i < activeSpawners.Count; i++) //Used to cycle through spawnpoints
             {
-                StartCoroutine(Spawn(i, sT, spawnCap)); //Spawns an enemy
+                CmdSpawn(i, sT, spawnCap); //Spawns an enemy
                 GameManager.enemiesAlive++; //Adds enemy to the enemiesAlive counter
                 spawnCap++; //Raises the spawn cap
                 enemiesToSpawn--; //Decreases the enemiesToSpawn counter
@@ -112,11 +113,18 @@ public class EnemySpawner : MonoBehaviour
     }
     #endregion
 
-    #region Spawn Enemies
-    IEnumerator Spawn(int spawnIndex, int spawnTime, int spawnCap) //Used to spawn enemies
+    IEnumerator Spawn(int spawnIndex, int spawnTime, int spawnCap)
     {
         yield return new WaitForSeconds(spawnTime); //Determines the amount of time between each set spawn
         GameObject enemy = Instantiate(enemyParent, activeSpawners[spawnIndex].position, Quaternion.identity, activeSpawners[spawnIndex]); //Instantiates a new enemy based on the spawnpoint arry's index
+        NetworkServer.Spawn(enemy);
+    }
+
+    #region Spawn Enemies
+    [Command]
+    void CmdSpawn(int spawnIndex, int spawnTime, int spawnCap) //Used to spawn enemies
+    {
+        StartCoroutine(Spawn(spawnIndex, spawnTime, spawnCap));
     }
     #endregion
 }

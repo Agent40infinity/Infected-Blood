@@ -23,6 +23,13 @@ public class Enemy : NetworkBehaviour
     public void Start()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
+        
+        if (!isServer)
+        {
+            nav.enabled = false;
+            return;
+        }
+
         player = FindObjectOfType<Player>();
 
         GetClosestPlayer();
@@ -30,6 +37,9 @@ public class Enemy : NetworkBehaviour
 
     public void Update()
     {
+        if (!isServer)
+            return;
+        
         AI();
 
         if (player)
