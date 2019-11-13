@@ -130,18 +130,20 @@ public class Player : NetworkBehaviour
     #region General
     public void Start() //Used to determine default values and grab references.
     {
-        isDowned = false;
-        playerDead = false;
-        curHealth = maxHealth;
-        controller = gameObject.GetComponent<CharacterController>();
-        //camera = GameObject.FindGameObjectWithTag("PlayerHead");
-        //hand = GameObject.Find("Hand");
-        curWeapons.Add(WeaponType.AddWeapon("Pistol"));
-        Instantiate(curWeapons[0].Gun, hand.transform.position, Quaternion.identity, hand.transform);
-        shotCooldown = curWeapons[0].FireRate;
+        if (isLocalPlayer)
+        {
+            isDowned = false;
+            playerDead = false;
+            curHealth = maxHealth;
+            controller = gameObject.GetComponent<CharacterController>();
+            camera.SetActive(true);
+            //hand = GameObject.Find("Hand");
+            curWeapons.Add(WeaponType.AddWeapon("Pistol"));
+            Instantiate(curWeapons[0].Gun, hand.transform.position, Quaternion.identity, hand.transform);
+            shotCooldown = curWeapons[0].FireRate;
 
-        Cursor.lockState = CursorLockMode.Locked;
-
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void Update() //Used to make reference to the sub-routines/methods.

@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 /*--------------------------------------------------------------------------
  * Script Created by: Aiden Nathan.
  *------------------------------------------------------------------------*/
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     #region Variables
     //General
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(IncreaseDifficulty()); //Calls upon the co-routine "IncreaseDifficulty"
             }
-            StartCoroutine(RevivePlayers()); //Calls upon the co-routine "RevivePlayers"
+            CmdRevivePlayers(); //Calls upon the co-routine "RevivePlayers"
             enemySpawner.enemiesToSpawn = enemiesPerRound; //Sets the enemiesToSpawn on the EnemySpawner to the new caculated enemiesPerRound after the difficulty increase
             enemySpawner.enemiesSpawning = true; //Allows the enemies to spawn.
             enemySpawner.finishedSpawning = false; //Ends the round management from the Game Managers end
@@ -90,14 +91,14 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Revive Players
-    IEnumerator RevivePlayers() //Used to revive players at the start of a new round
+    [Command]
+    public void CmdRevivePlayers() //Used to revive players at the start of a new round
     {
         for (int i = 0; i < playersDead.Count; i++) //Revives all players within the playersDead list
         {
             StartCoroutine(playersDead[i].Revived(spawnPos[i + 1])); //Used to revive each player
             playersDead.RemoveAt(i); //Removes the entry from the list
         }
-        yield return new WaitForEndOfFrame();
     }
     #endregion
 }
