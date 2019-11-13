@@ -23,23 +23,16 @@ public class Enemy : NetworkBehaviour
     public void Start()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
-        
-        if (!isServer)
-        {
-            nav.enabled = false;
-            return;
-        }
-
         player = FindObjectOfType<Player>();
 
-        GetClosestPlayer();
+        if (!isLocalPlayer)
+        {
+            GetClosestPlayer();
+        }
     }
 
     public void Update()
     {
-        if (!isServer)
-            return;
-        
         AI();
 
         if (player)
@@ -111,6 +104,7 @@ public class Enemy : NetworkBehaviour
     public void CmdDeath()
     {
         Destroy(this.gameObject);
+        NetworkServer.Destroy(this.gameObject);
     }
 
     private void OnDestroy()

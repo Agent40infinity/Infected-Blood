@@ -25,6 +25,6 @@ public class Door : MonoBehaviour
     {
         doors[index].SetBool("Open", true);
         doorOpen[index] = true;
-        spawner.UnlockRoom(index + 1);
+        spawner.CmdUnlockRoom(index + 1);
     }
 }

@@ -33,20 +33,23 @@ public class EnemySpawner : NetworkBehaviour
     #region General
     public void Start()
     {
-        enemyParent = Resources.Load("Prefabs/Enemy") as GameObject; //Loads the enemy prefab from file
-
-        roomParents = new RoomData[GameObject.FindGameObjectsWithTag("SpawnRooms").Length]; //Sets the length of RoomParents to the length of returned array of GameObjects with the tag "SpawnRooms"
-        for (int i = 0; i < roomParents.Length; i++) //Loop used to set up the RoomData values per entry in the array
+        if (isServer)
         {
-            roomParents[i].room = GameObject.FindGameObjectsWithTag("SpawnRooms")[i]; //Sets the room parent
-            roomParents[i].spawnPoints = roomParents[i].room.GetComponentsInChildren<Transform>(); //Gathers and stores a list of all the room's spawnpoints into an array
-            for (int x = 0; x < roomParents[i].spawnPoints.Length; x++)
-            {
-                Debug.Log(roomParents[i].spawnPoints[x]);
-            }
-        }
+            enemyParent = Resources.Load("Prefabs/Enemy") as GameObject; //Loads the enemy prefab from file
 
-        UnlockRoom(0); //Calls upon UnlcokRoom to add the spawn room data to activeSpawners
+            roomParents = new RoomData[GameObject.FindGameObjectsWithTag("SpawnRooms").Length]; //Sets the length of RoomParents to the length of returned array of GameObjects with the tag "SpawnRooms"
+            for (int i = 0; i < roomParents.Length; i++) //Loop used to set up the RoomData values per entry in the array
+            {
+                roomParents[i].room = GameObject.FindGameObjectsWithTag("SpawnRooms")[i]; //Sets the room parent
+                roomParents[i].spawnPoints = roomParents[i].room.GetComponentsInChildren<Transform>(); //Gathers and stores a list of all the room's spawnpoints into an array
+                for (int x = 0; x < roomParents[i].spawnPoints.Length; x++)
+                {
+                    Debug.Log(roomParents[i].spawnPoints[x]);
+                }
+            }
+
+            CmdUnlockRoom(0); //Calls upon UnlcokRoom to add the spawn room data to activeSpawners
+        }
     }
 
     public void Update()
@@ -56,47 +59,50 @@ public class EnemySpawner : NetworkBehaviour
             Destroy(GameObject.FindWithTag("Enemy"));
         }
 
-        if (spawningPaused == true && GameManager.enemiesAlive < maxEnemies) //Checks whether or not the spawning can be unpaused based on the enemies alive(Uses spawningPaused as a gateway variable to stop an infinite loop)
+        if (isServer)
         {
-            spawningPaused = false;
-        }
-
-        if (enemiesSpawning == true && spawningPaused == false) //Checks whether or not enemies are needed to be spawned
-        {
-            int sT = 0; //Timer for enemy spawn rate
-            int spawnCap = 0; //how many enemies can spawn at a time before the spawn timer increases
-            for (int i = pausedIndex; i < activeSpawners.Count; i++) //Used to cycle through spawnpoints
+            if (spawningPaused == true && GameManager.enemiesAlive < maxEnemies) //Checks whether or not the spawning can be unpaused based on the enemies alive(Uses spawningPaused as a gateway variable to stop an infinite loop)
             {
-                CmdSpawn(i, sT, spawnCap); //Spawns an enemy
-                GameManager.enemiesAlive++; //Adds enemy to the enemiesAlive counter
-                spawnCap++; //Raises the spawn cap
-                enemiesToSpawn--; //Decreases the enemiesToSpawn counter
+                spawningPaused = false;
+            }
 
-                if (spawnCap == activeSpawners.Count) //Checks whether or not all spawners have spawned one enemy before raising the spawn rate timer
+            if (enemiesSpawning == true && spawningPaused == false) //Checks whether or not enemies are needed to be spawned
+            {
+                int sT = 0; //Timer for enemy spawn rate
+                int spawnCap = 0; //how many enemies can spawn at a time before the spawn timer increases
+                for (int i = pausedIndex; i < activeSpawners.Count; i++) //Used to cycle through spawnpoints
                 {
-                    sT += 3; //Adds to the existing spawn rate timer
-                    spawnCap = 0; //Resets the spawn cap
-                }
-                if (enemiesToSpawn > 0 && i == activeSpawners.Count - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
-                {
-                    i = -1; //resets the loop
-                }
-                if (GameManager.enemiesAlive >= maxEnemies) //Checks whether or not the enemiesAlive has reached the max enemy spawn cap
-                {
-                    spawningPaused = true; //Pauses the enemy spawning
-                    pausedIndex = i + 1; //Stores i + 1 as the pausedIndex to allow for the spawning to continue from a new spawnpoint each time
-                    if (pausedIndex == activeSpawners.Count - 1 || pausedIndex < 0) //Checks whether or not i has reached the activeSpawners count to make sure the spawners don't get stuck at only spawning at 0. Checks -1 as well.
+                    CmdSpawn(i, sT, spawnCap); //Spawns an enemy
+                    GameManager.enemiesAlive++; //Adds enemy to the enemiesAlive counter
+                    spawnCap++; //Raises the spawn cap
+                    enemiesToSpawn--; //Decreases the enemiesToSpawn counter
+
+                    if (spawnCap == activeSpawners.Count) //Checks whether or not all spawners have spawned one enemy before raising the spawn rate timer
                     {
-                        pausedIndex = 0; //Sets to 0
+                        sT += 3; //Adds to the existing spawn rate timer
+                        spawnCap = 0; //Resets the spawn cap
                     }
-                    i = activeSpawners.Count; //ends the loop
-                }
-                if (enemiesToSpawn == 0) //If the enemiesToSpawn count becomes 0, ends enemy spawning
-                {
-                    pausedIndex = 0; //Resets pausedIndex once spawning has completed
-                    i = activeSpawners.Count; //ends the loop
-                    enemiesSpawning = false; //Ceases the ability to spawn more enemies
-                    finishedSpawning = true; //Used to let the GameManager know the spawning has bee completed
+                    if (enemiesToSpawn > 0 && i == activeSpawners.Count - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop
+                    {
+                        i = -1; //resets the loop
+                    }
+                    if (GameManager.enemiesAlive >= maxEnemies) //Checks whether or not the enemiesAlive has reached the max enemy spawn cap
+                    {
+                        spawningPaused = true; //Pauses the enemy spawning
+                        pausedIndex = i + 1; //Stores i + 1 as the pausedIndex to allow for the spawning to continue from a new spawnpoint each time
+                        if (pausedIndex == activeSpawners.Count - 1 || pausedIndex < 0) //Checks whether or not i has reached the activeSpawners count to make sure the spawners don't get stuck at only spawning at 0. Checks -1 as well.
+                        {
+                            pausedIndex = 0; //Sets to 0
+                        }
+                        i = activeSpawners.Count; //ends the loop
+                    }
+                    if (enemiesToSpawn == 0) //If the enemiesToSpawn count becomes 0, ends enemy spawning
+                    {
+                        pausedIndex = 0; //Resets pausedIndex once spawning has completed
+                        i = activeSpawners.Count; //ends the loop
+                        enemiesSpawning = false; //Ceases the ability to spawn more enemies
+                        finishedSpawning = true; //Used to let the GameManager know the spawning has bee completed
+                    }
                 }
             }
         }
@@ -104,7 +110,8 @@ public class EnemySpawner : NetworkBehaviour
     #endregion
 
     #region Add Spawners
-    public void UnlockRoom(int index) //Used to unlock a room to add the spawners to the activeSpawner List
+    [Command]
+    public void CmdUnlockRoom(int index) //Used to unlock a room to add the spawners to the activeSpawner List
     {
         for (int i = 1; i < roomParents[index].spawnPoints.Length; i++) //For all spawners within the room
         {

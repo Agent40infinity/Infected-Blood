@@ -99,6 +99,7 @@ public class Weapon : NetworkBehaviour
         set { gunObject = value; }
     }
 
+    [Client]
     public void Shoot(Camera playerCam, GameObject gun)
     {
         switch (function)
