@@ -112,7 +112,14 @@ public class Weapon : NetworkBehaviour
                 {
                     if (hit.collider.tag == "Enemy")
                     {
+                        GameObject particlePrefab = Resources.Load<GameObject>("Prefabs/Particles/Hit-Marker-Particle");
+                        GameObject bulletTracer = Instantiate(particlePrefab, hit.point, Quaternion.LookRotation(playerCam.transform.forward));
                         hit.collider.gameObject.GetComponent<Enemy>().CmdDeath();
+                    }
+                    else if(hit.collider.tag != "Environment")
+                    {
+                        GameObject particlePrefab = Resources.Load<GameObject>("Prefabs/Particles/Impact-Particle");
+                        GameObject bulletTracer = Instantiate(particlePrefab, hit.point, Quaternion.LookRotation(playerCam.transform.forward));
                     }
                 }
                 break;

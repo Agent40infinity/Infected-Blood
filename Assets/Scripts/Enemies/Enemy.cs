@@ -24,15 +24,19 @@ public class Enemy : NetworkBehaviour
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
         player = FindObjectOfType<Player>();
+        GetClosestPlayer();
 
-        if (!isLocalPlayer)
+        if (!isServer)
         {
-            GetClosestPlayer();
+            nav.Stop();
         }
     }
 
     public void Update()
     {
+        if (!isServer)
+            return;
+
         AI();
 
         if (player)

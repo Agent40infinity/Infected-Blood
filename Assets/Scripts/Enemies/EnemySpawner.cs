@@ -72,7 +72,7 @@ public class EnemySpawner : NetworkBehaviour
                 int spawnCap = 0; //how many enemies can spawn at a time before the spawn timer increases
                 for (int i = pausedIndex; i < activeSpawners.Count; i++) //Used to cycle through spawnpoints
                 {
-                    CmdSpawn(i, sT, spawnCap); //Spawns an enemy
+                    StartCoroutine(Spawn(i, sT, spawnCap)); //Spawns an enemy
                     GameManager.enemiesAlive++; //Adds enemy to the enemiesAlive counter
                     spawnCap++; //Raises the spawn cap
                     enemiesToSpawn--; //Decreases the enemiesToSpawn counter
@@ -128,10 +128,9 @@ public class EnemySpawner : NetworkBehaviour
     }
 
     #region Spawn Enemies
-    [Command]
-    void CmdSpawn(int spawnIndex, int spawnTime, int spawnCap) //Used to spawn enemies
-    {
-        StartCoroutine(Spawn(spawnIndex, spawnTime, spawnCap));
-    }
+    //void Spawn(int spawnIndex, int spawnTime, int spawnCap) //Used to spawn enemies
+    //{
+    //    StartCoroutine(Spawn(spawnIndex, spawnTime, spawnCap));
+    //}
     #endregion
 }

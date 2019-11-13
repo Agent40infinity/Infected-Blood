@@ -742,7 +742,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   startOnHeadless: 1
-  serverTickRate: 30
+  serverTickRate: 60
   showDebugMessages: 0
   offlineScene: Menu
   onlineScene: Main

@@ -255,7 +255,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1273100990
+  m_SceneId: 1591692974
 --- !u!1 &22326933
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 695028270
+  m_SceneId: 620084815
 --- !u!1 &126216412
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 3795355850
+  m_SceneId: 2783864574
 --- !u!1 &128916846
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +872,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2802685452
+  m_SceneId: 3103630569
 --- !u!1 &206230291
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &213850232
 Transform:
@@ -1192,7 +1192,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1129868317
+  m_SceneId: 1310891010
 --- !u!1 &287607156
 GameObject:
   m_ObjectHideFlags: 0
@@ -1401,7 +1401,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 630775653
+  m_SceneId: 1595512056
 --- !u!1 &409291873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1574,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1466270466
+  m_SceneId: 3847757186
 --- !u!1 &467757169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &467757170
 Transform:
@@ -1906,7 +1906,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2166119866
+  m_SceneId: 762249013
 --- !u!1 &486130229
 GameObject:
   m_ObjectHideFlags: 0
@@ -2166,7 +2166,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2090549073
+  m_SceneId: 1781633251
 --- !u!1 &543646065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2343,7 +2343,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 745080390
+  m_SceneId: 992852610
 --- !u!1 &599664541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,7 +2480,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 555521181
+  m_SceneId: 578069752
 --- !u!1 &616176465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +2648,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 3485635738
+  m_SceneId: 578490859
 --- !u!1 &634025457
 GameObject:
   m_ObjectHideFlags: 0
@@ -3060,7 +3060,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1498558657
+  m_SceneId: 3653874687
 --- !u!1 &885737293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3382,7 +3382,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 67121280
+  m_SceneId: 172140781
 --- !u!1 &1155588790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3520,7 +3520,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1213558188
+  m_SceneId: 898779737
 --- !u!1 &1181859444
 GameObject:
   m_ObjectHideFlags: 0
@@ -3664,7 +3664,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 440216871
+  m_SceneId: 2708528233
 --- !u!1 &1183135477
 GameObject:
   m_ObjectHideFlags: 0
@@ -3709,6 +3709,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb735266ef1c4c746a46778e4199798d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   enemiesDead: 1
   round: 0
   enemiesPerRound: 8
@@ -3734,7 +3736,7 @@ MonoBehaviour:
   serverOnly: 1
   localPlayerAuthority: 0
   m_AssetId: 
-  m_SceneId: 1319854418
+  m_SceneId: 556394375
 --- !u!1 &1237400437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3752,7 +3754,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1237400438
 Transform:
@@ -4226,7 +4228,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 3554681764
+  m_SceneId: 448332922
 --- !u!1 &1482245761
 GameObject:
   m_ObjectHideFlags: 0
@@ -4297,7 +4299,7 @@ MonoBehaviour:
   serverOnly: 1
   localPlayerAuthority: 0
   m_AssetId: 
-  m_SceneId: 1660014799
+  m_SceneId: 4050180311
 --- !u!1 &1502478567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4506,7 +4508,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2697347020
+  m_SceneId: 2613277081
 --- !u!1 &1632340548
 GameObject:
   m_ObjectHideFlags: 0
@@ -4710,7 +4712,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 1753406256
+  m_SceneId: 346199819
 --- !u!1 &1753629042
 GameObject:
   m_ObjectHideFlags: 0
@@ -4885,7 +4887,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 3017203613
+  m_SceneId: 3887996046
 --- !u!1 &1840605730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5029,7 +5031,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 114443403
+  m_SceneId: 2949692712
 --- !u!1 &1840829744
 GameObject:
   m_ObjectHideFlags: 0
@@ -5167,7 +5169,7 @@ MonoBehaviour:
   serverOnly: 0
   localPlayerAuthority: 1
   m_AssetId: 
-  m_SceneId: 2289972398
+  m_SceneId: 3262381111
 --- !u!1 &1851571675
 GameObject:
   m_ObjectHideFlags: 0
@@ -5215,7 +5217,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1872046394
 Transform:
@@ -5614,7 +5616,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2078166518
 Transform:
