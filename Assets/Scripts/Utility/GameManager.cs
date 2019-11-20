@@ -17,6 +17,7 @@ public class GameManager : NetworkBehaviour
     public static int enemiesAlive; //Value used to show and keep track of how many enemies are alive
     public static List<Player> playersDead = new List<Player>(); //Used to keep track of all players that have died
     public Transform[] spawnPos; //List of spawn positions for the start of the game and for reviving players
+    public bool gameStarted = false;
 
     GameObject[] players; //Used to determine how many players have connected to the game so that stats can be tracked
     public int[] playerKills = new int[4]; //Used to keep track of player kills
@@ -35,10 +36,20 @@ public class GameManager : NetworkBehaviour
 
     public void Update()
     {
-        Rounds(); //Used to call upon Rounds
-        GetPlayerData(); //Used to call upon GetPlayerData
-
+        if (gameStarted == true)
+        {
+            Rounds(); //Used to call upon Rounds
+            GetPlayerData(); //Used to call upon GetPlayerData
+        }
         Debug.Log("Enemies Alive: " + enemiesAlive);
+    }
+    #endregion
+
+    #region Start Game
+    public void StartGame()
+    {
+        players = GameObject.FindGameObjectsWithTag("Player");
+        gameStarted = true;
     }
     #endregion
 

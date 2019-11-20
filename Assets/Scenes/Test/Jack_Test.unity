@@ -659,13 +659,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 455511133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad92bfa0006dc94ab91e0289c4c1548, type: 3}
+  m_Script: {fileID: 11500000, guid: 809f4841ebf80014c8f22b880e81414d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   curAmmo: 0
   maxAmmo: 0
   isFiring: 0
-  ammoDisplay: {fileID: 682035334}
+  ammoDisplay: {fileID: 0}
+  gameManager: {fileID: 0}
+  scoreboard: {fileID: 0}
 --- !u!114 &455511135
 MonoBehaviour:
   m_ObjectHideFlags: 0

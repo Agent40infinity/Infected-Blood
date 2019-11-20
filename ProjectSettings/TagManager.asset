@@ -10,6 +10,8 @@ TagManager:
   - Door
   - GunVendor
   - SpawnRooms
+  - GameManager
+  - Scoreboard
   layers:
   - Default
   - TransparentFX
