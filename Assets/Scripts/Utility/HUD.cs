@@ -10,7 +10,7 @@ public class HUD : MonoBehaviour
     public int maxAmmo;
     public bool isFiring;
     public Text ammoDisplay;
-
+    public Sprite perkIcon;
     public GameManager gameManager;
     public GameObject scoreboard;
 
@@ -51,6 +51,15 @@ public class HUD : MonoBehaviour
             isFiring = false;
         }
     }
+
+   // public void DisplayPerk()
+   // {
+   //     perkIcon.sprite = perkIcon;
+   //     if()
+   //     {
+
+   //     }
+   // }
 
     public void BeginGame()
     {

@@ -8,6 +8,7 @@ public static class PerkData
     {
         int id = 0;
         string name = "";
+        string perkIcon = "";
         float damageIncrease = 0f;
         float healthIncrease = 0f;
         float gunCapacityincrease = 0f;
@@ -15,6 +16,7 @@ public static class PerkData
         float instantRevive = 0f;
         float speedIncrease = 0f;
         float fireRateIncrease = 0f;
+
         // PerkType;
         switch (Type)
         {
@@ -66,7 +68,8 @@ public static class PerkData
             GunCapacityIncrease = gunCapacityincrease,
             LifeSteal = lifeSteal,
             HealthIncrease = healthIncrease,
-            Perk = Type
+            Perk = Type,
+            perkIcon = Resources.Load("Icon/"+perkIcon) as Sprite
         };
         return temp;
     }

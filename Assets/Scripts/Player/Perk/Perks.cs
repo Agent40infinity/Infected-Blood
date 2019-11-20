@@ -13,7 +13,7 @@ public class Perks : MonoBehaviour
     private float instantRevive;
     private float speedIncrease;
     private float fireRateIncrease;
-    private Texture2D perkIcon;
+    public Sprite perkIcon;
     private PerkType perk;
 
 
@@ -62,7 +62,7 @@ public class Perks : MonoBehaviour
         get { return fireRateIncrease; }
         set { fireRateIncrease = value; }
     }
-    public Texture2D PerkIcon
+    public Sprite PerkIcon
     {
         get { return perkIcon; }
         set { perkIcon = value; }
