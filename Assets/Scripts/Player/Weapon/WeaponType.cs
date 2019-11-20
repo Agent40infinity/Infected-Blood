@@ -16,23 +16,33 @@ public static class WeaponType
         float spread = 0;
         float range = 25f;
         int clipSize = 8;
-        int clip = clipSize;
+        int clip = 8;
         int ammo = 16;
+        int AmmoMax = 0;
+        string icon = "";
         FireType function = FireType.Hitscan;
-        GameObject gunObject = Resources.Load("Prefabs/Gun") as GameObject;
+        string gunObject = "";
+
 
         switch (Name)
         {
             case "Pistol":
                 id = 0;
                 reloadTime = 2f;
+                clipSize = 8;
+                clip = 8;
+                AmmoMax = 64;
                 fireRate = 0.4f;
                 spread = 1;
                 function = FireType.Hitscan;
+                icon = "Pistol";
                 break;
             case "Rifle":
                 id = 1;
                 reloadTime = 5f;
+                clipSize = 30;
+                clip = 30;
+                AmmoMax = 240;
                 fireRate = 0.3f;
                 spread = 3;
                 function = FireType.Hitscan;
@@ -40,6 +50,9 @@ public static class WeaponType
             case "SMG":
                 id = 2;
                 reloadTime = 3.5f;
+                clipSize = 45;
+                clip = 45;
+                AmmoMax = 360;
                 fireRate = 0.1f;
                 spread = 5;
                 function = FireType.Projectile;
@@ -47,6 +60,9 @@ public static class WeaponType
             case "Shotgun":
                 id = 3;
                 reloadTime = 2f;
+                clipSize = 8;
+                clip = 8;
+                AmmoMax = 64;
                 fireRate = 1f;
                 spread = 1;
                 function = FireType.Hitscan;
@@ -54,6 +70,9 @@ public static class WeaponType
             case "Flamethrower":
                 id = 4;
                 reloadTime = 6f;
+                clipSize = 100;
+                clip = 100;
+                AmmoMax = 800;
                 fireRate = 0.2f;
                 spread = 1;
                 function = FireType.Entity;
@@ -61,6 +80,9 @@ public static class WeaponType
             case "BFG":
                 id = 5;
                 reloadTime = 4f;
+                clipSize = 4;
+                clip = 4;
+                AmmoMax = 20;
                 fireRate = 3f;
                 spread = 1;
                 function = FireType.Projectile;
@@ -78,10 +100,12 @@ public static class WeaponType
             ClipSize = clipSize,
             Clip = clip,
             Ammo = ammo,
+            Icon = Resources.Load("Icon/"+icon) as Sprite,
             AmmoMax = ammo,
             Function = function,
-            Gun = gunObject
+            Gun = Resources.Load("Prefabs/"+gunObject) as GameObject
         };
         return temp;
+
     }
 }

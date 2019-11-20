@@ -22,6 +22,7 @@ public class Weapon : NetworkBehaviour
     private int clipSize;
     private int clip;
     private FireType function;
+    private Sprite icon;
 
     //References:
     private GameObject gunObject;
@@ -32,7 +33,11 @@ public class Weapon : NetworkBehaviour
         get { return name; }
         set { name = value; }
     }
-
+   public Sprite Icon
+    {
+        get { return icon; }
+        set { icon = value; }
+    }
     public int ID
     {
         get { return id; }
