@@ -666,6 +666,7 @@ MonoBehaviour:
   maxAmmo: 0
   isFiring: 0
   ammoDisplay: {fileID: 0}
+  perkIcon: {fileID: 0}
   gameManager: {fileID: 0}
   scoreboard: {fileID: 0}
 --- !u!114 &455511135
@@ -996,6 +997,7 @@ GameObject:
   - component: {fileID: 956506149}
   - component: {fileID: 956506153}
   - component: {fileID: 956506152}
+  - component: {fileID: 956506154}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1144,6 +1146,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &956506154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956506148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1146a1328f2957489ae8fb2dcacbc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adSource: {fileID: 0}
+  adClips: []
 --- !u!1001 &1125885350
 PrefabInstance:
   m_ObjectHideFlags: 0

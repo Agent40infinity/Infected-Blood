@@ -13,6 +13,10 @@ using Mirror;
 public class Player : NetworkBehaviour
 {
     #region Variables
+    //Sound:
+    [Header("Sound Effects/Music")]
+    private AudioSource sound;
+
     //Statistics:
     [Header("Statistics")]
     public int score = 0;
@@ -143,6 +147,7 @@ public class Player : NetworkBehaviour
             shotCooldown = curWeapons[0].FireRate;
 
             Cursor.lockState = CursorLockMode.Locked;
+           sound = GetComponent<AudioSource>(); // Gets the audio source
         }
     }
 
@@ -259,6 +264,8 @@ public class Player : NetworkBehaviour
                     curWeapons[weaponIndex].Shoot(camera.GetComponentInChildren<Camera>(), gameObject);
                     shotCooldown = curWeapons[weaponIndex].FireRate;
                     curWeapons[weaponIndex].Clip--;
+                    sound.Play();
+                    Debug.Log("Gun shot sound");
                 }
             }
             else if (curWeapons[weaponIndex].Clip == 0 && curWeapons[weaponIndex].Ammo > 0)
