@@ -15,16 +15,22 @@ public class Enemy : NetworkBehaviour
     public float attackRange = 4f;
     public int damage = 20;
     public float detectionRadius = 5f;
+    public float noiseTimer = 0f;
 
     //References:
     public Player player;
     public NavMeshAgent nav;
+    public AudioSource sound;
+    public AudioClip[] adClips;
 
     public void Start()
     {
         nav = gameObject.GetComponent<NavMeshAgent>();
         player = FindObjectOfType<Player>();
         GetClosestPlayer();
+        sound = GetComponent<AudioSource>();
+
+        noiseTimer = Random.Range(0.5f, 9f);
 
         if (!isServer)
         {
@@ -34,6 +40,14 @@ public class Enemy : NetworkBehaviour
 
     public void Update()
     {
+        noiseTimer -= Time.deltaTime;
+        if (noiseTimer < 0f)
+        {
+            sound.clip = adClips[Random.Range(0, adClips.Length)];
+            sound.Play();
+            noiseTimer = Random.Range(0.5f, 5f);
+        }
+
         if (!isServer)
             return;
 

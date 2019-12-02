@@ -29,7 +29,8 @@ public class MusicManager : MonoBehaviour
     {
         yield return null;
 
-        for (int i = 0; i < adClips.Length; i++) // Loops through the array of clips to the source
+        int i = 0;
+        while(true)
         {
             adSource.clip = adClips[i];
 
@@ -39,7 +40,11 @@ public class MusicManager : MonoBehaviour
             {
                 yield return null;
             }
+
+            i = (i + 1) % adClips.Length; // Modulo which is the % operator, divides i+1 with the adclips.length and finds the remainder
         } // Go back and select the next clip in the array
+
+        // StartCoroutine(PlayAudioSequentially()); // If you leave the for loop, you can restart this function like this
     }
     #endregion
 

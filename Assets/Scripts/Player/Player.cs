@@ -15,7 +15,7 @@ public class Player : NetworkBehaviour
     #region Variables
     //Sound:
     [Header("Sound Effects/Music")]
-    private AudioSource sound;
+    public AudioSource rifleSound, shotgunSound, walkSound;
 
     //Statistics:
     [Header("Statistics")]
@@ -147,7 +147,7 @@ public class Player : NetworkBehaviour
             shotCooldown = curWeapons[0].FireRate;
 
             Cursor.lockState = CursorLockMode.Locked;
-           sound = GetComponent<AudioSource>(); // Gets the audio source
+           rifleSound = GetComponent<AudioSource>(); // Gets the audio source
         }
     }
 
@@ -190,6 +190,11 @@ public class Player : NetworkBehaviour
         moveDirection.z = Input.GetAxis("Vertical");
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection = transform.TransformDirection(moveDirection);
+        walkSound = GetComponent<AudioSource>();
+        if (moveDirection.x >0 || moveDirection.z >0)
+        {
+            walkSound.Play();
+        }
         if (IsGrounded()) //Checks if the player is Grounded and applies all Y axis based movement.
         {
             moveDirection.y = 0;
@@ -264,7 +269,7 @@ public class Player : NetworkBehaviour
                     curWeapons[weaponIndex].Shoot(camera.GetComponentInChildren<Camera>(), gameObject);
                     shotCooldown = curWeapons[weaponIndex].FireRate;
                     curWeapons[weaponIndex].Clip--;
-                    sound.Play();
+                    rifleSound.Play();
                     Debug.Log("Gun shot sound");
                 }
             }
