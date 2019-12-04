@@ -10,9 +10,12 @@ public class HUD : MonoBehaviour
     public Text maxAmmo;
     public Text gunName;
     public bool isFiring;
-    public Sprite perkIcon;
     public Player localPlayer;
     public int weaponIndex;
+
+    //Perks:
+    public GameObject perkParent;
+    public int perksAdded;
 
     //Scoreboard:
     public GameObject scoreboard;
@@ -30,6 +33,7 @@ public class HUD : MonoBehaviour
     public void Update()
     {
         DisplayAmmo();
+        DisplayPerk();
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -64,12 +68,17 @@ public class HUD : MonoBehaviour
         gunName.text = localPlayer.curWeapons[weaponIndex].Name;
     }
 
-    //public void DisplayPerk()
-    //{
-    //    perkIcon.sprite = perkIcon;
-    //    if ()
-    //    {
-
-    //    }
-    //}
+    public void DisplayPerk()
+    {
+        if (localPlayer.curPerks.Count > 0 && perksAdded < localPlayer.curPerks.Count)
+        {
+            for (int i = perksAdded; i < localPlayer.curPerks.Count; i++)
+            {
+                perksAdded++;
+                Sprite perkIcon = localPlayer.curPerks[i].PerkIcon;
+                GameObject perkRef = Instantiate(perkParent, scoreboard.transform);
+                perkRef.GetComponent<SpriteRenderer>().sprite = perkIcon;
+            }
+        }
+    }
 }
