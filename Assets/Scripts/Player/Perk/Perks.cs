@@ -13,7 +13,7 @@ public class Perks : MonoBehaviour
     private float instantRevive;
     private float speedIncrease;
     private float fireRateIncrease;
-    public Sprite perkIcon;
+    private Sprite perkIcon;
     private PerkType perk;
 
 

@@ -8834,7 +8834,12 @@ MonoBehaviour:
   maxAmmo: {fileID: 888939636}
   gunName: {fileID: 1834897135}
   isFiring: 0
-  perkIcon: {fileID: 0}
+  localPlayer: {fileID: 0}
+  weaponIndex: 0
+  perkParent: {fileID: 9080759153438171093, guid: 254c9fbd0dee2664aa34b0e2721595f1,
+    type: 3}
+  perkIcon: []
+  perkIndex: 0
   scoreboard: {fileID: 1482812617}
   scoreHeader: {fileID: 0}
   playerScore: {fileID: 0}

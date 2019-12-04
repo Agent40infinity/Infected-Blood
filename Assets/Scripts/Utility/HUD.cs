@@ -10,9 +10,13 @@ public class HUD : MonoBehaviour
     public Text maxAmmo;
     public Text gunName;
     public bool isFiring;
-    public Sprite perkIcon;
     public Player localPlayer;
     public int weaponIndex;
+
+    //Perks:
+    public GameObject perks;
+    public GameObject perkParent;
+    public int perksAdded;
 
     //Scoreboard:
     public GameObject scoreboard;
@@ -23,13 +27,18 @@ public class HUD : MonoBehaviour
     {
         playerScore = Resources.Load("Prefabs/Player_Score") as GameObject;
         scoreboard = GameObject.Find("Scoreboard");
+        perks = GameObject.Find("Perks");
         scoreHeader = GameObject.Find("ScoreHeader").GetComponent<Transform>();
         scoreboard.SetActive(false);
     }
 
     public void Update()
     {
-        DisplayAmmo();
+        if (localPlayer != null)
+        {
+            DisplayAmmo();
+            DisplayPerk();
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -57,19 +66,25 @@ public class HUD : MonoBehaviour
         }
     }
 
-   public void DisplayAmmo()
+    public void DisplayAmmo()
     {
+
         curAmmo.text = localPlayer.curWeapons[weaponIndex].Clip.ToString();
         maxAmmo.text = localPlayer.curWeapons[weaponIndex].Ammo.ToString();
         gunName.text = localPlayer.curWeapons[weaponIndex].Name;
     }
 
-    //public void DisplayPerk()
-    //{
-    //    perkIcon.sprite = perkIcon;
-    //    if ()
-    //    {
-
-    //    }
-    //}
+    public void DisplayPerk()
+    {
+        if (localPlayer.curPerks.Count > 0 && perksAdded < localPlayer.curPerks.Count )
+        {
+            for (int i = perksAdded; i < localPlayer.curPerks.Count; i++)
+            {
+                perksAdded++;
+                Sprite perkIcon = localPlayer.curPerks[i].PerkIcon;
+                GameObject perkRef = Instantiate(perkParent, new Vector3(20 + (i * 20), 5, perks.transform.position.z), Quaternion.identity, perks.transform);
+                perkRef.GetComponent<SpriteRenderer>().sprite = perkIcon;
+            }
+        }
+    }
 }
