@@ -26,7 +26,7 @@ public class Door : MonoBehaviour
         Debug.Log("index: " + index);
         //doors[index].GetComponent<Animator>().SetBool("Open", true);
         doorOpen[index] = true;
-        spawner.CmdUnlockRoom(index);
+        spawner.CmdUnlockRoom(index + 1);
         doors[index].SetActive(false);
     }
 }

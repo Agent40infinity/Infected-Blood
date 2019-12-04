@@ -34,6 +34,8 @@ public class HUD : MonoBehaviour
 
     public void Update()
     {
+        DisplayMoney();
+
         if (localPlayer != null)
         {
             DisplayAmmo();
@@ -57,10 +59,9 @@ public class HUD : MonoBehaviour
         {
             GameObject scoreRef = Instantiate(playerScore, new Vector3(scoreHeader.position.x ,scoreHeader.position.y + (-i - 1 * 20), scoreHeader.position.z), Quaternion.identity, scoreHeader);
             Text[] textRef = scoreRef.GetComponentsInChildren<Text>();
-            Debug.Log(textRef.Length);
             textRef[0].text = GameManager.playerName[i];
-            textRef[1].text = GameManager.playerKills[i].ToString();
-            textRef[2].text = GameManager.playerScore[i].ToString();
+            textRef[1].text = GameManager.playerScore[i].ToString();
+            textRef[2].text = GameManager.playerKills[i].ToString();
             textRef[3].text = GameManager.playerDowns[i].ToString();
             textRef[4].text = GameManager.playerDeaths[i].ToString();
         }
@@ -86,5 +87,10 @@ public class HUD : MonoBehaviour
                 perkRef.GetComponent<SpriteRenderer>().sprite = perkIcon;
             }
         }
+    }
+
+    public void DisplayMoney()
+    {
+
     }
 }

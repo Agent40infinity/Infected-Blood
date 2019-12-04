@@ -136,6 +136,7 @@ public class Enemy : NetworkBehaviour
     [Command]
     public void CmdDeath()
     {
+        player.kills++;
         Destroy(this.gameObject);
         NetworkServer.Destroy(this.gameObject);
     }
