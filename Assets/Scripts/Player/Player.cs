@@ -148,7 +148,7 @@ public class Player : NetworkBehaviour
             shotCooldown = curWeapons[0].FireRate;
 
             Cursor.lockState = CursorLockMode.Locked;
-           rifleSound = GetComponent<AudioSource>(); // Gets the audio source
+            rifleSound = GetComponent<AudioSource>(); // Gets the audio source
         }
     }
 
