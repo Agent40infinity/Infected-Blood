@@ -13,6 +13,7 @@ public class Weapon : NetworkBehaviour
     //General:
     private new string name;
     private int id;
+    private int damage;
     private float reloadTime;
     private float fireRate;
     private float spread;
@@ -42,6 +43,12 @@ public class Weapon : NetworkBehaviour
     {
         get { return id; }
         set { id = value; }
+    }
+
+    public int Damage
+    {
+        get { return damage; }
+        set { damage = value; }
     }
 
     public float ReloadTime
@@ -105,7 +112,7 @@ public class Weapon : NetworkBehaviour
     }
 
     [Client]
-    public void Shoot(Camera playerCam, GameObject gun)
+    public void Shoot(Camera playerCam, GameObject gun, Player player)
     {
         switch (function)
         {
@@ -119,7 +126,7 @@ public class Weapon : NetworkBehaviour
                     {
                         GameObject particlePrefab = Resources.Load<GameObject>("Prefabs/Particles/Hit-Marker-Particle");
                         GameObject bulletTracer = Instantiate(particlePrefab, hit.point, Quaternion.LookRotation(playerCam.transform.forward));
-                        hit.collider.gameObject.GetComponent<Enemy>().CmdDeath();
+                        hit.collider.gameObject.GetComponent<Enemy>().CmdTakeDamage(damage, player);
                     }
                     else if(hit.collider.tag != "Environment")
                     {

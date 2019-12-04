@@ -11,6 +11,7 @@ public static class WeaponType
     public static Weapon AddWeapon(string Name)
     {
         int id = 0;
+        int damage = 25;
         float reloadTime = 0;
         float fireRate = 0;
         float spread = 0;
@@ -21,7 +22,7 @@ public static class WeaponType
         int AmmoMax = 0;
         string icon = "";
         FireType function = FireType.Hitscan;
-        string gunObject = "";
+        string gunObject = "Gun";
 
 
         switch (Name)
@@ -93,6 +94,7 @@ public static class WeaponType
         {
             Name = Name,
             ID = id,
+            Damage = damage,
             ReloadTime = reloadTime,
             FireRate = fireRate,
             Spread = spread,
@@ -103,7 +105,7 @@ public static class WeaponType
             Icon = Resources.Load("Icon/"+icon) as Sprite,
             AmmoMax = ammo,
             Function = function,
-            Gun = Resources.Load("Prefabs/"+gunObject) as GameObject
+            Gun = Resources.Load("Prefabs/"+ gunObject) as GameObject
         };
         return temp;
 

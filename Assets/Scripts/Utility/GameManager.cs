@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 /*--------------------------------------------------------------------------
  * Script Created by: Aiden Nathan.
@@ -18,12 +19,18 @@ public class GameManager : NetworkBehaviour
     public static List<Player> playersDead = new List<Player>(); //Used to keep track of all players that have died
     public Transform[] spawnPos; //List of spawn positions for the start of the game and for reviving players
     public bool gameStarted = false;
+    public bool gameEnded = false;
 
-    GameObject[] players; //Used to determine how many players have connected to the game so that stats can be tracked
-    public int[] playerKills = new int[4]; //Used to keep track of player kills
+    public static GameObject[] players; //Used to determine how many players have connected to the game so that stats can be tracked
+    public static string[] playerName = new string[4]; //Used to keep track of player kills
+    public static int[] playerScore = new int[4]; //Used to keep track of player kills
+    public static int[] playerKills = new int[4]; //Used to keep track of player kills
+    public static int[] playerDowns = new int[4]; //Used to keep track of player kills
+    public static int[] playerDeaths = new int[4]; //Used to keep track of player kills
 
     //References:
     public EnemySpawner enemySpawner; //Reference for the EnemySpawner
+    public HUD hud;
     #endregion
 
     #region General
@@ -32,6 +39,8 @@ public class GameManager : NetworkBehaviour
         enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
         spawnPos = GameObject.Find("SpawnPos").GetComponentsInChildren<Transform>();
         players = GameObject.FindGameObjectsWithTag("Player");
+        hud = GameObject.FindGameObjectWithTag("UI").GetComponent<HUD>();
+
     }
 
     public void Update()
@@ -40,6 +49,10 @@ public class GameManager : NetworkBehaviour
         {
             Rounds(); //Used to call upon Rounds
             GetPlayerData(); //Used to call upon GetPlayerData
+            if (playersDead.Count == players.Length && !gameEnded)
+            {
+                EndGame();
+            }
         }
         Debug.Log("Enemies Alive: " + enemiesAlive);
     }
@@ -59,8 +72,28 @@ public class GameManager : NetworkBehaviour
         for (int i = 0; i < players.Length; i++) //Checks how many players are in the game
         {
             Player playerRef = players[i].GetComponent<Player>(); //private reference for the script
+            playerName[i] = "Player " + 1; //stores the money of the player into the playerKills array
+            playerScore[i] = playerRef.score; //stores the score of the player into the playerKills array
             playerKills[i] = playerRef.kills; //stores the kills of the player into the playerKills array
+            playerDowns[i] = playerRef.downs; //stores the downs of the player into the playerKills array
+            playerDeaths[i] = playerRef.deaths; //stores the deaths of the player into the playerKills array
         }
+    }
+    #endregion
+
+    #region Death System
+    public void EndGame()
+    {
+        hud.scoreboard.SetActive(true);
+        hud.displayStats();
+        StartCoroutine(DeathScreen());
+        gameEnded = true;
+    }
+
+    public IEnumerator DeathScreen()
+    {
+        yield return new WaitForSeconds(10);
+        //SceneManager.LoadScene(0);
     }
     #endregion
 

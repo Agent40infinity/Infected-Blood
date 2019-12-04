@@ -16,6 +16,7 @@ public class Enemy : NetworkBehaviour
     public int damage = 20;
     public float detectionRadius = 5f;
     public float noiseTimer = 0f;
+    public int health = 75;
 
     //References:
     public Player player;
@@ -115,6 +116,18 @@ public class Enemy : NetworkBehaviour
                 Player playerHitRef = hit.collider.gameObject.GetComponent<Player>();
                 playerHitRef.TakeDamage(damage);
             }
+        }
+    }
+
+    [Command]
+    public void CmdTakeDamage(int damage, Player player)
+    {
+        player.score += 10;
+        health -= damage;
+        if (health <= 0)
+        {
+            CmdDeath();
+            player.score += 20;
         }
     }
 

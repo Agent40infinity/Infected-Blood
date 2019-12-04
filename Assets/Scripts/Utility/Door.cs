@@ -17,8 +17,8 @@ public class Door : MonoBehaviour
     {
         doors = gameObject.GetComponentsInChildren<Animator>();
         spawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
-        cost = new int[] { 400, 600, 800, 800, 1000, 1000, 1000, 1200, 2500, 2500 };
-        doorOpen = new bool[] { false, false, false, false, false, false, false, false, false, false };
+        cost = new int[] { 400, 600, 800, 800, 800, 800, 1000, 1000, 1200, 2500, 2500 };
+        doorOpen = new bool[] { false, false, false, false, false, false, false, false, false, false, false };
     }
 
     public void OpenDoor(int index)

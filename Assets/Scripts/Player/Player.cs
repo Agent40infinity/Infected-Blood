@@ -73,6 +73,7 @@ public class Player : NetworkBehaviour
     public bool playerDead = false;
     public float timeTillDeath = 0;
     public float deathTime = 15f;
+    public bool canTakeDamage = true;
 
     //References:
     [Header("References")]
@@ -266,7 +267,7 @@ public class Player : NetworkBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    curWeapons[weaponIndex].Shoot(camera.GetComponentInChildren<Camera>(), gameObject);
+                    curWeapons[weaponIndex].Shoot(camera.GetComponentInChildren<Camera>(), gameObject, this);
                     shotCooldown = curWeapons[weaponIndex].FireRate;
                     curWeapons[weaponIndex].Clip--;
                     rifleSound.Play();
@@ -374,11 +375,23 @@ public class Player : NetworkBehaviour
     #region Health Management
     public void TakeDamage(int damageDealt)
     {
-        curHealth -= damageDealt;
-        if (curHealth <= 0)
+        if (canTakeDamage)
         {
-            isDowned = true;
+            curHealth -= damageDealt;
+            if (curHealth <= 0)
+            {
+                isDowned = true;
+                canTakeDamage = false;
+            }
+            StartCoroutine(iFrame());
         }
+    }
+
+    public IEnumerator iFrame()
+    {
+        canTakeDamage = false;
+        yield return new WaitForSeconds(0.3f);
+        canTakeDamage = true;
     }
 
     public void RevivingPlayer()
@@ -398,6 +411,7 @@ public class Player : NetworkBehaviour
     public IEnumerator SetupSpectator()
     {
         playerDead = true;
+        deaths++;
         GameManager.playersDead.Add(this);
         isDowned = false;
         timeTillDeath = 0;
@@ -413,6 +427,7 @@ public class Player : NetworkBehaviour
         curHealth = maxHealth;
         playerDead = false;
         isDowned = false;
+        canTakeDamage = true;
         gameObject.GetComponent<MeshRenderer>().enabled = true;
         gameObject.GetComponentInChildren<MeshRenderer>().enabled = true;
         yield return new WaitForEndOfFrame();

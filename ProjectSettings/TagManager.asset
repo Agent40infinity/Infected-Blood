@@ -12,6 +12,7 @@ TagManager:
   - SpawnRooms
   - GameManager
   - Scoreboard
+  - UI
   layers:
   - Default
   - TransparentFX
