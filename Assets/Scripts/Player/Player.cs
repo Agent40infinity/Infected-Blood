@@ -54,6 +54,7 @@ public class Player : NetworkBehaviour
     public List<Weapon> curWeapons = new List<Weapon>();
     public float shotCooldown;
     public bool canFire = true;
+    public int selectedIndex = 0;
 
     //Perk Management:
     [Header("Perk Management")]
@@ -170,7 +171,7 @@ public class Player : NetworkBehaviour
                     {
                         CmdInteractions();
 
-                        CmdShooting(0);
+                        CmdShooting(selectedIndex);
 
                         if (revivingPlayer == true)
                         {
@@ -188,6 +189,7 @@ public class Player : NetworkBehaviour
                 SpectatorMovement();
             }
             MouseMovement();
+            hud.weaponIndex = selectedIndex;
         }
     }
     #endregion

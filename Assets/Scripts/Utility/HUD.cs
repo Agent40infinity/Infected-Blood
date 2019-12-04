@@ -12,6 +12,7 @@ public class HUD : MonoBehaviour
     public bool isFiring;
     public Sprite perkIcon;
     public Player localPlayer;
+    public int weaponIndex;
 
     //Scoreboard:
     public GameObject scoreboard;
@@ -58,7 +59,9 @@ public class HUD : MonoBehaviour
 
    public void DisplayAmmo()
     {
-        
+        curAmmo.text = localPlayer.curWeapons[weaponIndex].Clip.ToString();
+        maxAmmo.text = localPlayer.curWeapons[weaponIndex].Ammo.ToString();
+        gunName.text = localPlayer.curWeapons[weaponIndex].Name;
     }
 
     //public void DisplayPerk()
