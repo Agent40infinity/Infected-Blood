@@ -122,12 +122,14 @@ public class Enemy : NetworkBehaviour
     [Command]
     public void CmdTakeDamage(int damage, Player player)
     {
-        player.score += 10;
+        player.score += 100;
+        player.money += 10;
         health -= damage;
         if (health <= 0)
         {
             CmdDeath();
-            player.score += 20;
+            player.score += 200;
+            player.money += 20;
         }
     }
 

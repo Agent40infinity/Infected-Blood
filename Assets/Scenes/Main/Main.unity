@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 17693804}
   - component: {fileID: 17693807}
   - component: {fileID: 17693806}
-  - component: {fileID: 17693808}
   - component: {fileID: 17693805}
   - component: {fileID: 17693810}
   - component: {fileID: 17693809}
@@ -206,25 +205,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17693803}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &17693808
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17693803}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &17693809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,7 +763,6 @@ GameObject:
   - component: {fileID: 114877731}
   - component: {fileID: 114877734}
   - component: {fileID: 114877733}
-  - component: {fileID: 114877735}
   - component: {fileID: 114877732}
   - component: {fileID: 114877737}
   - component: {fileID: 114877736}
@@ -866,25 +845,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114877730}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &114877735
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114877730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114877736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,7 +1103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146901053}
   m_Layer: 0
-  m_Name: Room (7)
+  m_Name: Room (6)
   m_TagString: SpawnRooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1162,7 +1122,7 @@ Transform:
   m_Children:
   - {fileID: 1434104137}
   m_Father: {fileID: 2135661103}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &168460784
 GameObject:
@@ -1335,12 +1295,11 @@ GameObject:
   - component: {fileID: 173874928}
   - component: {fileID: 173874931}
   - component: {fileID: 173874930}
-  - component: {fileID: 173874932}
   - component: {fileID: 173874929}
   - component: {fileID: 173874934}
   - component: {fileID: 173874933}
   m_Layer: 0
-  m_Name: Door_9
+  m_Name: Door_8
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1418,25 +1377,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173874927}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &173874932
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173874927}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &173874933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1599,7 +1539,7 @@ GameObject:
   m_Component:
   - component: {fileID: 228721690}
   m_Layer: 0
-  m_Name: Room (6)
+  m_Name: Room (5)
   m_TagString: SpawnRooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1619,7 +1559,7 @@ Transform:
   - {fileID: 230854085}
   - {fileID: 492310389}
   m_Father: {fileID: 2135661103}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &230854084
 GameObject:
@@ -2774,7 +2714,6 @@ GameObject:
   - component: {fileID: 349640684}
   - component: {fileID: 349640687}
   - component: {fileID: 349640686}
-  - component: {fileID: 349640688}
   - component: {fileID: 349640685}
   - component: {fileID: 349640690}
   - component: {fileID: 349640689}
@@ -2857,25 +2796,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349640683}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &349640688
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349640683}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &349640689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4952,12 +4872,11 @@ GameObject:
   - component: {fileID: 570843702}
   - component: {fileID: 570843705}
   - component: {fileID: 570843704}
-  - component: {fileID: 570843706}
   - component: {fileID: 570843703}
   - component: {fileID: 570843708}
   - component: {fileID: 570843707}
   m_Layer: 0
-  m_Name: Door_7
+  m_Name: Door_6
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5035,25 +4954,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 570843701}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &570843706
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570843701}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &570843707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7527,7 +7427,6 @@ GameObject:
   - component: {fileID: 869165872}
   - component: {fileID: 869165875}
   - component: {fileID: 869165874}
-  - component: {fileID: 869165876}
   - component: {fileID: 869165873}
   - component: {fileID: 869165878}
   - component: {fileID: 869165877}
@@ -7610,25 +7509,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869165871}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &869165876
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869165871}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &869165877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7761,7 +7641,7 @@ GameObject:
   m_Component:
   - component: {fileID: 885737294}
   m_Layer: 0
-  m_Name: Room (8)
+  m_Name: Room (7)
   m_TagString: SpawnRooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7780,7 +7660,7 @@ Transform:
   m_Children:
   - {fileID: 708091685}
   m_Father: {fileID: 2135661103}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &907493119
 GameObject:
@@ -8085,38 +7965,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 924002289}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &924262467
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 924262468}
-  m_Layer: 0
-  m_Name: Room (5)
-  m_TagString: SpawnRooms
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &924262468
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 924262467}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1849322785}
-  - {fileID: 1335214947}
-  m_Father: {fileID: 2135661103}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978474004
 GameObject:
   m_ObjectHideFlags: 0
@@ -8248,7 +8096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 992698210}
   m_Layer: 0
-  m_Name: Room (10)
+  m_Name: Room (9)
   m_TagString: SpawnRooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8269,7 +8117,7 @@ Transform:
   - {fileID: 1851571676}
   - {fileID: 346376936}
   m_Father: {fileID: 2135661103}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &997085525
 GameObject:
@@ -9345,7 +9193,6 @@ GameObject:
   - component: {fileID: 1181859445}
   - component: {fileID: 1181859448}
   - component: {fileID: 1181859447}
-  - component: {fileID: 1181859449}
   - component: {fileID: 1181859446}
   - component: {fileID: 1181859451}
   - component: {fileID: 1181859450}
@@ -9428,25 +9275,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181859444}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1181859449
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181859444}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1181859450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10389,8 +10217,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 924262468}
-  m_RootOrder: 1
+  m_Father: {fileID: 1434510002}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1359154108
 GameObject:
@@ -11573,6 +11401,8 @@ Transform:
   m_Children:
   - {fileID: 1359154109}
   - {fileID: 907493120}
+  - {fileID: 1849322785}
+  - {fileID: 1335214947}
   m_Father: {fileID: 2135661103}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12910,12 +12740,11 @@ GameObject:
   - component: {fileID: 1622449163}
   - component: {fileID: 1622449166}
   - component: {fileID: 1622449165}
-  - component: {fileID: 1622449167}
   - component: {fileID: 1622449164}
   - component: {fileID: 1622449169}
   - component: {fileID: 1622449168}
   m_Layer: 0
-  m_Name: Door_10
+  m_Name: Door_9
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12993,25 +12822,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622449162}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1622449167
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1622449162}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1622449168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13159,12 +12969,11 @@ GameObject:
   - component: {fileID: 1637617139}
   - component: {fileID: 1637617145}
   - component: {fileID: 1637617144}
-  - component: {fileID: 1637617143}
   - component: {fileID: 1637617142}
   - component: {fileID: 1637617141}
   - component: {fileID: 1637617140}
   m_Layer: 0
-  m_Name: Door_5
+  m_Name: Door_4
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13228,25 +13037,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &1637617143
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1637617138}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!23 &1637617144
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13394,12 +13184,11 @@ GameObject:
   - component: {fileID: 1656295450}
   - component: {fileID: 1656295453}
   - component: {fileID: 1656295452}
-  - component: {fileID: 1656295454}
   - component: {fileID: 1656295451}
   - component: {fileID: 1656295456}
   - component: {fileID: 1656295455}
   m_Layer: 0
-  m_Name: Door_6
+  m_Name: Door_5
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13477,25 +13266,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656295449}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1656295454
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1656295449}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1656295455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14251,12 +14021,11 @@ GameObject:
   - component: {fileID: 1840605731}
   - component: {fileID: 1840605734}
   - component: {fileID: 1840605733}
-  - component: {fileID: 1840605735}
   - component: {fileID: 1840605732}
   - component: {fileID: 1840605737}
   - component: {fileID: 1840605736}
   m_Layer: 0
-  m_Name: Door_8
+  m_Name: Door_7
   m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14334,25 +14103,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1840605730}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!95 &1840605735
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840605730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9cdd5a04b2513cb40a15313469e8c92a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1840605736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14549,8 +14299,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 924262468}
-  m_RootOrder: 0
+  m_Father: {fileID: 1434510002}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1851571675
 GameObject:
@@ -15400,7 +15150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046297513}
   m_Layer: 0
-  m_Name: Room (9)
+  m_Name: Room (8)
   m_TagString: SpawnRooms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15422,7 +15172,7 @@ Transform:
   - {fileID: 616176466}
   - {fileID: 1632340549}
   m_Father: {fileID: 2135661103}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2051500040
 GameObject:
@@ -16076,7 +15826,6 @@ Transform:
   - {fileID: 22326934}
   - {fileID: 486130230}
   - {fileID: 1434510002}
-  - {fileID: 924262468}
   - {fileID: 228721690}
   - {fileID: 146901053}
   - {fileID: 885737294}
