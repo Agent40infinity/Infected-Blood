@@ -14,6 +14,7 @@ public class HUD : MonoBehaviour
     public int weaponIndex;
 
     //Perks:
+    public GameObject perks;
     public GameObject perkParent;
     public int perksAdded;
 
@@ -26,14 +27,18 @@ public class HUD : MonoBehaviour
     {
         playerScore = Resources.Load("Prefabs/Player_Score") as GameObject;
         scoreboard = GameObject.Find("Scoreboard");
+        perks = GameObject.Find("Perks");
         scoreHeader = GameObject.Find("ScoreHeader").GetComponent<Transform>();
         scoreboard.SetActive(false);
     }
 
     public void Update()
     {
-        DisplayAmmo();
-        DisplayPerk();
+        if (localPlayer != null)
+        {
+            DisplayAmmo();
+            DisplayPerk();
+        }
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -61,8 +66,9 @@ public class HUD : MonoBehaviour
         }
     }
 
-   public void DisplayAmmo()
+    public void DisplayAmmo()
     {
+
         curAmmo.text = localPlayer.curWeapons[weaponIndex].Clip.ToString();
         maxAmmo.text = localPlayer.curWeapons[weaponIndex].Ammo.ToString();
         gunName.text = localPlayer.curWeapons[weaponIndex].Name;
@@ -70,13 +76,13 @@ public class HUD : MonoBehaviour
 
     public void DisplayPerk()
     {
-        if (localPlayer.curPerks.Count > 0 && perksAdded < localPlayer.curPerks.Count)
+        if (localPlayer.curPerks.Count > 0 && perksAdded < localPlayer.curPerks.Count )
         {
             for (int i = perksAdded; i < localPlayer.curPerks.Count; i++)
             {
                 perksAdded++;
                 Sprite perkIcon = localPlayer.curPerks[i].PerkIcon;
-                GameObject perkRef = Instantiate(perkParent, scoreboard.transform);
+                GameObject perkRef = Instantiate(perkParent, new Vector3(20 + (i * 20), 5, perks.transform.position.z), Quaternion.identity, perks.transform);
                 perkRef.GetComponent<SpriteRenderer>().sprite = perkIcon;
             }
         }
