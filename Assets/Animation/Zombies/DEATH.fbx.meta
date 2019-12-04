@@ -1,0 +1,197 @@
+fileFormatVersion: 2
+guid: 5f12b43971894bf4dbfb4490c2ffbb29
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: CENTRE_FOOT
+    100002: CENTRE_FOOT 1
+    100004: CENTRE_STOMACH
+    100006: CHEST
+    100008: cluster1Handle
+    100010: cluster2Handle
+    100012: cluster3Handle
+    100014: cluster4Handle
+    100016: curve1
+    100018: //RootNode
+    100020: fwefwef:ZOMBIE_MAN_LOLOLOLO:Cube
+    100022: group1
+    100024: group2
+    100026: group3
+    100028: group4
+    100030: ikHandle1
+    100032: ikHandle2
+    100034: ikHandle3
+    100036: joint11
+    100038: joint12
+    100040: joint21
+    100042: joint22
+    100044: joint22 1
+    100046: joint23
+    100048: joint23 1
+    100050: joint24
+    100052: joint24 1
+    100054: joint29
+    100056: LEFT_ANKLE
+    100058: left_hip
+    100060: left_hip1
+    100062: LEFT_KNEE
+    100064: LEFT_TOES
+    100066: NECK
+    100068: nurbsCircle1
+    100070: nurbsCircle2
+    100072: nurbsCircle3
+    100074: nurbsCircle4
+    100076: nurbsCircle5
+    100078: REFT_ANKRE
+    100080: REFT_KNEE
+    100082: REFT_TOES
+    100084: ss:Camera
+    100086: ss:Lamp
+    100088: ss:lowman_shoesSmoothProxyGroup
+    100090: TOP_OF_HEAD
+    400000: CENTRE_FOOT
+    400002: CENTRE_FOOT 1
+    400004: CENTRE_STOMACH
+    400006: CHEST
+    400008: cluster1Handle
+    400010: cluster2Handle
+    400012: cluster3Handle
+    400014: cluster4Handle
+    400016: curve1
+    400018: //RootNode
+    400020: fwefwef:ZOMBIE_MAN_LOLOLOLO:Cube
+    400022: group1
+    400024: group2
+    400026: group3
+    400028: group4
+    400030: ikHandle1
+    400032: ikHandle2
+    400034: ikHandle3
+    400036: joint11
+    400038: joint12
+    400040: joint21
+    400042: joint22
+    400044: joint22 1
+    400046: joint23
+    400048: joint23 1
+    400050: joint24
+    400052: joint24 1
+    400054: joint29
+    400056: LEFT_ANKLE
+    400058: left_hip
+    400060: left_hip1
+    400062: LEFT_KNEE
+    400064: LEFT_TOES
+    400066: NECK
+    400068: nurbsCircle1
+    400070: nurbsCircle2
+    400072: nurbsCircle3
+    400074: nurbsCircle4
+    400076: nurbsCircle5
+    400078: REFT_ANKRE
+    400080: REFT_KNEE
+    400082: REFT_TOES
+    400084: ss:Camera
+    400086: ss:Lamp
+    400088: ss:lowman_shoesSmoothProxyGroup
+    400090: TOP_OF_HEAD
+    2000000: ss:Camera
+    2100000: fwefwef_ZOMBIE_MAN_LOLOLOLO_Material.005
+    2100002: fwefwef_ZOMBIE_MAN_LOLOLOLO_Material.006
+    2100004: fwefwef_ZOMBIE_MAN_LOLOLOLO_Material
+    2100006: fwefwef_ZOMBIE_MAN_LOLOLOLO_Material.003
+    2100008: fwefwef_ZOMBIE_MAN_LOLOLOLO_Material.009
+    2100010: fwefwef_ZOMBIE_MAN_LOLOLOLO_Material.002
+    2100012: fwefwef_ZOMBIE_MAN_LOLOLOLO_20806_Head_without_top
+    4300000: fwefwef:ZOMBIE_MAN_LOLOLOLO:Cube
+    7400000: DEATH
+    9500000: //RootNode
+    10800000: ss:Lamp
+    13700000: fwefwef:ZOMBIE_MAN_LOLOLOLO:Cube
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

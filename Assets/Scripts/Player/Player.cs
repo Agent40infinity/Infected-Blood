@@ -63,6 +63,7 @@ public class Player : NetworkBehaviour
     [Header("Interactions")]
     public float interactRange = 10f;
     public bool revivingPlayer = false;
+    public bool canInteract = false;
 
     //Health Management:
     [Header("Health Management")]
@@ -81,6 +82,7 @@ public class Player : NetworkBehaviour
     public GameObject camera; //Reference for the attached camera.
     public GameObject hand;
     public LayerMask ground; //Reference for the LayerMask that stores the value for ground.
+    public HUD hud;
 
     public bool IsGrounded() //Used to determine if the player is grounded based on a collider check.
     {
@@ -146,6 +148,8 @@ public class Player : NetworkBehaviour
             curWeapons.Add(WeaponType.AddWeapon("Pistol"));
             Instantiate(curWeapons[0].Gun, hand.transform.position, Quaternion.identity, hand.transform);
             shotCooldown = curWeapons[0].FireRate;
+            hud = GameObject.FindGameObjectWithTag("UI").GetComponent<HUD>();
+            hud.localPlayer = this;
 
             Cursor.lockState = CursorLockMode.Locked;
             rifleSound = GetComponent<AudioSource>(); // Gets the audio source
@@ -162,13 +166,16 @@ public class Player : NetworkBehaviour
                 if (!isDowned)
                 {
                     Movement();
-                    CmdInteractions();
-
-                    CmdShooting(0);
-
-                    if (revivingPlayer == true)
+                    if (canInteract)
                     {
-                        RevivingPlayer();
+                        CmdInteractions();
+
+                        CmdShooting(0);
+
+                        if (revivingPlayer == true)
+                        {
+                            RevivingPlayer();
+                        }
                     }
                 }
                 else

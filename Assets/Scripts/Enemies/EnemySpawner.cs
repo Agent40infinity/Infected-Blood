@@ -79,7 +79,7 @@ public class EnemySpawner : NetworkBehaviour
 
                     if (spawnCap == activeSpawners.Count) //Checks whether or not all spawners have spawned one enemy before raising the spawn rate timer
                     {
-                        sT += 3; //Adds to the existing spawn rate timer
+                        sT += 5; //Adds to the existing spawn rate timer
                         spawnCap = 0; //Resets the spawn cap
                     }
                     if (enemiesToSpawn > 0 && i == activeSpawners.Count - 1) //Checks whether or not enemies are still needed to be spawned and if the spawnpoint's array has reached the final spawnpoint to allow for the spawning to loop

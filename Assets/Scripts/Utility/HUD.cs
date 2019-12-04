@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class HUD : MonoBehaviour
 {
     //Ammo:
-    public int curAmmo;
-    public int maxAmmo;
+    public Text curAmmo;
+    public Text maxAmmo;
+    public Text gunName;
     public bool isFiring;
-    public Text ammoDisplay;
     public Sprite perkIcon;
+    public Player localPlayer;
+
+    //Scoreboard:
     public GameObject scoreboard;
     public Transform scoreHeader;
     public GameObject playerScore;
@@ -25,7 +28,7 @@ public class HUD : MonoBehaviour
 
     public void Update()
     {
-        //DisplayAmmo();
+        DisplayAmmo();
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
@@ -53,24 +56,17 @@ public class HUD : MonoBehaviour
         }
     }
 
-    //public void DisplayAmmo()
+   public void DisplayAmmo()
+    {
+        
+    }
+
+    //public void DisplayPerk()
     //{
-    //    ammoDisplay.text = curAmmo + "/" + maxAmmo;
-    //    // ammoDisplay.text = maxAmmo.ToString();
-    //    if (Input.GetMouseButtonDown(0) && !isFiring && curAmmo > 0)
+    //    perkIcon.sprite = perkIcon;
+    //    if ()
     //    {
-    //        isFiring = true;
-    //        curAmmo--;
-    //        isFiring = false;
+
     //    }
     //}
-
-   // public void DisplayPerk()
-   // {
-   //     perkIcon.sprite = perkIcon;
-   //     if()
-   //     {
-
-   //     }
-   // }
 }

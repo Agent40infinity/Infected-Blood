@@ -45,6 +45,11 @@ public class GameManager : NetworkBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X) && gameStarted == false)
+        {
+            StartGame();
+        }
+
         if (gameStarted == true)
         {
             Rounds(); //Used to call upon Rounds
@@ -62,6 +67,16 @@ public class GameManager : NetworkBehaviour
     public void StartGame()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].GetComponent<Player>().canInteract = true;
+        }
+        StartCoroutine(BeginCountDown());
+    }
+
+    public IEnumerator BeginCountDown()
+    {
+        yield return new WaitForSeconds(10f);
         gameStarted = true;
     }
     #endregion
@@ -93,7 +108,7 @@ public class GameManager : NetworkBehaviour
     public IEnumerator DeathScreen()
     {
         yield return new WaitForSeconds(10);
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
     #endregion
 
