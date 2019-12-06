@@ -9,13 +9,13 @@ public static class PerkData
         int id = 0;
         string name = "";
         string perkIcon = "";
-        float damageIncrease = 0f;
-        float healthIncrease = 0f;
-        float gunCapacityincrease = 0f;
+        float damageIncrease = 1f;
+        float healthIncrease = 1f;
+        float gunCapacityincrease = 1f;
         float lifeSteal = 0f;
-        float instantRevive = 0f;
-        float speedIncrease = 0f;
-        float fireRateIncrease = 0f;
+        float instantRevive = 1f;
+        float speedIncrease = 1f;
+        float fireRateIncrease = 1f;
 
         // PerkType;
         switch (Type)
