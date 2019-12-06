@@ -24,37 +24,37 @@ public static class PerkData
                 id = 0;
                 name = "frank";
                 perkIcon = "Health";
-                healthIncrease = 0.50f;
+                healthIncrease = 1.50f;
                 break;
             case PerkType.DamageIncrease:
                 id = 1;
                 name = "";
                 perkIcon = "Damage";
-                damageIncrease = 0.20f;
+                damageIncrease = 1.20f;
                 break;
             case PerkType.SpeedIncrease:
                 id = 2;
                 name = "";
                 perkIcon = "Speed";
-                speedIncrease = 0.25f;
+                speedIncrease = 1.25f;
                 break;
             case PerkType.FireRateIncrease:
                 id = 3;
                 name = "";
                 perkIcon = "Firerate";
-                fireRateIncrease = 0.25f;
+                fireRateIncrease = 0.75f;
                 break;
             case PerkType.InstantRevive:
                 id = 4;
                 name = "";
                 perkIcon = "InstantRevive";
-                instantRevive = 1f;
+                instantRevive = 0f;
                 break;
             case PerkType.IncreasedGunCapacity:
                 id = 5;
                 name = "";
                 perkIcon = "Capacity";
-                gunCapacityincrease = 0.50f;
+                gunCapacityincrease = 1.50f;
                 break;
             case PerkType.Lifesteal:
                 id = 6;

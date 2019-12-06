@@ -76,13 +76,53 @@ public class Perks : MonoBehaviour
 
     public void ApplyStats(Player player) // This function assigns the player additioanl stats depending on the perk they have purchased
     {
-        //player.instantRevive += instantRevive;
-        //player.healthIncrease += healthIncrease;
-        //player.damageIncrease += damageincrease;
-        //player.fireRateIncrease += fireRateIncrease;
-        //player.speedIncrease += speedIncrease;
-        //player.lifeSteal += lifeSteal;
-        //player.gunCapacityIncrease += gunCapacityIncrease;
+        //Weapon Based:
+        for (int i = 0; i < player.curWeapons.Count; i++)
+        {
+            if (!player.curWeapons[i].BeenModified)
+            {
+                //DamageIncrease;
+                float refDamage = player.curWeapons[i].Damage;
+                refDamage *= DamageIncrease;
+                player.curWeapons[i].Damage = (int)refDamage;
+
+                //FireRateIncrease:
+                player.curWeapons[i].FireRate *= FireRateIncrease;
+
+                //CapacityIncrease:
+                float refCapacity = player.curWeapons[i].AmmoMax;
+                refCapacity *= GunCapacityIncrease;
+                player.curWeapons[i].AmmoMax = (int)refCapacity;
+
+                player.curWeapons[i].BeenModified = true;
+                Debug.Log(player.curWeapons[i].BeenModified);
+            }
+        }
+
+        //HealthIncrease:
+        if (!player.statModified[0] && Perk == PerkType.HealthIncrease) //Speed modified check
+        {
+            float refHealth = player.maxHealth;
+            refHealth *= healthIncrease;
+            player.maxHealth = (int)refHealth;
+            player.statModified[0] = true;
+        }
+
+        //SpeedIncrease:
+        if (!player.statModified[1] && Perk == PerkType.SpeedIncrease) //Speed modified check
+        {
+            player.speed *= SpeedIncrease;
+            player.statModified[1] = true;
+        }
+
+        //InstantRevive:
+        if (!player.statModified[2] && Perk == PerkType.InstantRevive) //Instant Revive modified check
+        {
+            player.pickupTime = instantRevive;
+            player.statModified[2] = true;
+        }
+
+        //player.lifeSteal += lifeSteal;        
     }
 
     public void OnDestroy() // If the player were to go down and or die the perks they currently hold are removed

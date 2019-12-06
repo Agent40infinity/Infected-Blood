@@ -59,11 +59,13 @@ public class Player : NetworkBehaviour
     //Perk Management:
     [Header("Perk Management")]
     public List<Perks> curPerks = new List<Perks>();
+    public bool[] statModified = { false, false, false }; //Health, Speed, InstantRevive;
 
     //Interactions:
     [Header("Interactions")]
     public float interactRange = 10f;
     public bool revivingPlayer = false;
+    public float pickupTime = 3f;
     public bool canInteract = false;
 
     //Health Management:
@@ -178,6 +180,7 @@ public class Player : NetworkBehaviour
                             RevivingPlayer();
                         }
                     }
+                    WeaponModify();
                 }
                 else
                 {
@@ -250,6 +253,7 @@ public class Player : NetworkBehaviour
     }
     #endregion
 
+    #region Spectate
     public void SpectatorMovement()
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -263,6 +267,21 @@ public class Player : NetworkBehaviour
         Debug.Log(moveDirection);
         controller.Move(moveDirection * Time.deltaTime); //Applies movement.
     }
+    #endregion
+
+    #region Weapon Modify
+    public void WeaponModify()
+    {
+        if (curWeapons[selectedIndex].BeenModified == false)
+        {
+            Debug.Log("Activated");
+            for (int i = 0; i < curPerks.Count; i++)
+            {
+                curPerks[i].ApplyStats(this);
+            }
+        }
+    }
+    #endregion
 
     #region Shooting
     [Command]
@@ -332,6 +351,7 @@ public class Player : NetworkBehaviour
                         {
                             money -= perkHitRef.Cost;
                             curPerks.Add(PerkData.AddPerk(perkHitRef.Perk));
+                            curPerks[curPerks.Count - 1].ApplyStats(this);
                         }
                     }
                 }

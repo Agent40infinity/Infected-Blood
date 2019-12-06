@@ -20,6 +20,8 @@ public static class WeaponType
         int clip = 8;
         int ammo = 16;
         int AmmoMax = 0;
+        bool beenModified = false;
+
         string icon = "";
         FireType function = FireType.Hitscan;
         string gunObject = "Gun";
@@ -104,6 +106,7 @@ public static class WeaponType
             Ammo = ammo,
             Icon = Resources.Load("Icon/"+icon) as Sprite,
             AmmoMax = ammo,
+            BeenModified = beenModified,
             Function = function,
             Gun = Resources.Load("Prefabs/"+ gunObject) as GameObject
         };

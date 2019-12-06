@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
+    //Screen:
+    public Vector2 scrt;
+
     //Ammo:
     public Text curAmmo;
     public Text maxAmmo;
@@ -25,6 +28,9 @@ public class HUD : MonoBehaviour
 
     public void Awake()
     {
+        scrt.x = Screen.width / 16;
+        scrt.y = Screen.height / 9;
+
         playerScore = Resources.Load("Prefabs/Player_Score") as GameObject;
         scoreboard = GameObject.Find("Scoreboard");
         perks = GameObject.Find("Perks");
@@ -57,7 +63,7 @@ public class HUD : MonoBehaviour
     {
         for (int i = 0; i < GameManager.players.Length; i++)
         {
-            GameObject scoreRef = Instantiate(playerScore, new Vector3(scoreHeader.position.x ,scoreHeader.position.y + (-i - 1 * 20), scoreHeader.position.z), Quaternion.identity, scoreHeader);
+            GameObject scoreRef = Instantiate(playerScore, new Vector3(scoreHeader.position.x ,scoreHeader.position.y + (-i - 1 * (scrt.y * 0.3f)), scoreHeader.position.z), Quaternion.identity, scoreHeader);
             Text[] textRef = scoreRef.GetComponentsInChildren<Text>();
             textRef[0].text = GameManager.playerName[i];
             textRef[1].text = GameManager.playerScore[i].ToString();
@@ -83,7 +89,7 @@ public class HUD : MonoBehaviour
             {
                 perksAdded++;
                 Sprite perkIcon = localPlayer.curPerks[i].PerkIcon;
-                GameObject perkRef = Instantiate(perkParent, new Vector3(20 + (i * 20), 5, perks.transform.position.z), Quaternion.identity, perks.transform);
+                GameObject perkRef = Instantiate(perkParent, new Vector3((scrt.x * 0.5f) + i * (scrt.x * 0.4f), scrt.x * 0.5f, perks.transform.position.z), Quaternion.identity, perks.transform);
                 perkRef.GetComponent<SpriteRenderer>().sprite = perkIcon;
             }
         }

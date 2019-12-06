@@ -22,6 +22,7 @@ public class Weapon : NetworkBehaviour
     private int ammoMax;
     private int clipSize;
     private int clip;
+    private bool beenModified;
     private FireType function;
     private Sprite icon;
 
@@ -97,6 +98,12 @@ public class Weapon : NetworkBehaviour
     {
         get { return ammoMax; }
         set { ammoMax = value; }
+    }
+
+    public bool BeenModified
+    {
+        get { return beenModified; }
+        set { beenModified = value; }
     }
 
     public FireType Function
