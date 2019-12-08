@@ -137,7 +137,7 @@ public class Weapon : NetworkBehaviour
                     {
                         GameObject particlePrefab = Resources.Load<GameObject>("Prefabs/Particles/Hit-Marker-Particle");
                         GameObject bulletTracer = Instantiate(particlePrefab, hit.point, Quaternion.LookRotation(playerCam.transform.forward));
-                        hit.collider.gameObject.GetComponent<Enemy>().CmdTakeDamage(damage, player);
+                        hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(damage, player);
                     }
                     else if(hit.collider.tag != "Environment") //If the raycast hits the environment, don't do anything
                     {

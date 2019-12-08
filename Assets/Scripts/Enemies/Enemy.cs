@@ -130,8 +130,7 @@ public class Enemy : NetworkBehaviour
     #endregion
 
     #region Health Management
-    [Command]
-    public void CmdTakeDamage(int damage, Player player) //Deals damage to the enemy and adds the bonuses to the player
+    public void TakeDamage(int damage, Player player) //Deals damage to the enemy and adds the bonuses to the player
     {
         player.score += 100;
         player.money += 10;

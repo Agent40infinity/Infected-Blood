@@ -8830,10 +8830,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 809f4841ebf80014c8f22b880e81414d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrt: {x: 0, y: 0}
   curAmmo: {fileID: 1273437544}
   maxAmmo: {fileID: 888939636}
   gunName: {fileID: 1834897135}
-  isFiring: 0
   localPlayer: {fileID: 0}
   weaponIndex: 0
   perks: {fileID: 0}
