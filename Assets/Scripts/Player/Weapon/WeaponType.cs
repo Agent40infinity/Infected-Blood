@@ -8,8 +8,9 @@ using UnityEngine;
 
 public static class WeaponType
 {
-    public static Weapon AddWeapon(string Name)
+    public static Weapon AddWeapon(string Name) //Used to add a weapon to a list
     {
+        //Variable references to allow for a private setting.
         int id = 0;
         int damage = 25;
         float reloadTime = 0;
@@ -27,7 +28,7 @@ public static class WeaponType
         string gunObject = "Gun";
 
 
-        switch (Name)
+        switch (Name) //Used to determine what type of weapon is being added and changes the stats modifed in accordance.
         {
             case "Pistol":
                 id = 0;
@@ -92,7 +93,7 @@ public static class WeaponType
                 break;
         }
 
-        Weapon temp = new Weapon
+        Weapon temp = new Weapon //Creates the data for a new weapon and applies the temp/private modifications to said weapon then returns the weapon as the value for AddWeapon.
         {
             Name = Name,
             ID = id,

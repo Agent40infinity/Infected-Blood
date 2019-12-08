@@ -10,6 +10,7 @@ using Mirror;
 [System.Serializable]
 public class Weapon : NetworkBehaviour
 {
+    #region Private Variables
     //General:
     private new string name;
     private int id;
@@ -28,8 +29,9 @@ public class Weapon : NetworkBehaviour
 
     //References:
     private GameObject gunObject;
+    #endregion
 
-    //Public Properties:
+    #region Public Properties
     public string Name
     {
         get { return name; }
@@ -117,32 +119,34 @@ public class Weapon : NetworkBehaviour
         get { return gunObject; }
         set { gunObject = value; }
     }
+    #endregion
 
+    #region Shooting
     [Client]
-    public void Shoot(Camera playerCam, GameObject gun, Player player)
+    public void Shoot(Camera playerCam, GameObject gun, Player player) 
     {
-        switch (function)
+        switch (function) //Switches between the different functions of each weapon and fires in accordance to that type
         {
-            case FireType.Hitscan:
+            case FireType.Hitscan: //All things to do with Hitscan
                 Vector3 mousePosition = playerCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
                 RaycastHit hit;
                 Debug.DrawRay(mousePosition, playerCam.transform.forward * range, Color.red, 5f);
-                if (Physics.Raycast(mousePosition, playerCam.transform.forward, out hit, range))
+                if (Physics.Raycast(mousePosition, playerCam.transform.forward, out hit, range)) //Shoots a raycast out and checks whether or not it hits anything.
                 {
-                    if (hit.collider.tag == "Enemy")
+                    if (hit.collider.tag == "Enemy") //If the raycast hits an enemy, deal damage to said enemy
                     {
                         GameObject particlePrefab = Resources.Load<GameObject>("Prefabs/Particles/Hit-Marker-Particle");
                         GameObject bulletTracer = Instantiate(particlePrefab, hit.point, Quaternion.LookRotation(playerCam.transform.forward));
                         hit.collider.gameObject.GetComponent<Enemy>().CmdTakeDamage(damage, player);
                     }
-                    else if(hit.collider.tag != "Environment")
+                    else if(hit.collider.tag != "Environment") //If the raycast hits the environment, don't do anything
                     {
                         GameObject particlePrefab = Resources.Load<GameObject>("Prefabs/Particles/Impact-Particle");
                         GameObject bulletTracer = Instantiate(particlePrefab, hit.point, Quaternion.LookRotation(playerCam.transform.forward));
                     }
                 }
                 break;
-            case FireType.Projectile:
+            case FireType.Projectile: //All things to do with projectile
                 GameObject bullet = Resources.Load<GameObject>("Prefabs/Bullet");
                 Instantiate(bullet, transform.position, Quaternion.identity);
                 Rigidbody bulletRigid = bullet.GetComponent<Rigidbody>();
@@ -156,6 +160,7 @@ public class Weapon : NetworkBehaviour
                 break;
         }
     }
+    #endregion
 }
 
 public enum FireType

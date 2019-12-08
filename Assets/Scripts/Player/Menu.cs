@@ -5,6 +5,10 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Aiden Nathan.
+ *------------------------------------------------------------------------*/
+
 public class Menu : MonoBehaviour
 {
     #region Variables
@@ -50,12 +54,12 @@ public class Menu : MonoBehaviour
     #endregion
 
     #region Main Menu
-    public void StartGame()
+    public void StartGame() //Starts the game
     {
         SceneManager.LoadScene(1);
     }
 
-    public void Settings(bool toggle)
+    public void Settings(bool toggle) //toggles the settings menu
     {
         if (toggle)
         {
@@ -91,7 +95,7 @@ public class Menu : MonoBehaviour
         Screen.fullScreen = isFullscreen;
     }
 
-    public void Back()
+    public void Back() //Used to go back
     {
         Settings(false);
     }

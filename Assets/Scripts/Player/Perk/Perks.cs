@@ -2,8 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Aiden Nathan w/ Jack.
+ *------------------------------------------------------------------------*/
+
 public class Perks : MonoBehaviour
 {
+    #region Private Variables
     private int id;
     private new string name;
     private float damageIncrease;
@@ -15,8 +20,9 @@ public class Perks : MonoBehaviour
     private float fireRateIncrease;
     private Sprite perkIcon;
     private PerkType perk;
+    #endregion
 
-
+    #region Public Properties
     public int ID
     {
         get { return id; }
@@ -73,7 +79,9 @@ public class Perks : MonoBehaviour
         get { return perk; }
         set { perk = value; }
     }
+    #endregion
 
+    #region Apply Stats
     public void ApplyStats(Player player) // This function assigns the player additioanl stats depending on the perk they have purchased
     {
         //Weapon Based:
@@ -124,6 +132,7 @@ public class Perks : MonoBehaviour
 
         //player.lifeSteal += lifeSteal;        
     }
+    #endregion
 
     public void OnDestroy() // If the player were to go down and or die the perks they currently hold are removed
     {
@@ -136,8 +145,8 @@ public class Perks : MonoBehaviour
         //player.gunCapacityIncrease -= gunCapacityIncrease;
     }
 }
- public enum PerkType
-    {
+ public enum PerkType //List of Enums created to categorize each perk.
+{
         HealthIncrease,
         DamageIncrease,
         SpeedIncrease,

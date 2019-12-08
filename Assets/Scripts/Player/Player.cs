@@ -19,11 +19,11 @@ public class Player : NetworkBehaviour
 
     //Statistics:
     [Header("Statistics")]
-    public int score = 0;
-    public int money = 0;
-    public int downs = 0;
-    public int kills = 0;
-    public int deaths = 0;
+    public int score = 0; //Stat to keep track of how much score the player has.
+    public int money = 0; //Stat to keep track of how much money the player can spend.
+    public int downs = 0; //Stat to keep track of how many times the player has been downed.
+    public int kills = 0; //Stat to keep track of how many kills the player has.
+    public int deaths = 0; //Stat to keep track of how many times the player died.
 
     //Movement:
     [Header("Physics")]
@@ -51,22 +51,22 @@ public class Player : NetworkBehaviour
 
     //Weapon Management:
     [Header("Weapon Management")]
-    public List<Weapon> curWeapons = new List<Weapon>();
-    public float shotCooldown;
-    public bool canFire = true;
-    public int selectedIndex = 0;
+    public List<Weapon> curWeapons = new List<Weapon>(); //List of the current weapons.
+    public float shotCooldown; //Cooldown for shooting based on the selected weapons firrate.
+    public bool canFire = true; //Checks whether or not the player can shoot.
+    public int selectedIndex = 0; //Selected Index for determining what weapon the player has selected.
 
     //Perk Management:
     [Header("Perk Management")]
-    public List<Perks> curPerks = new List<Perks>();
+    public List<Perks> curPerks = new List<Perks>(); //List of all current perks.
     public bool[] statModified = { false, false, false }; //Health, Speed, InstantRevive;
 
     //Interactions:
     [Header("Interactions")]
-    public float interactRange = 10f;
-    public bool revivingPlayer = false;
-    public float pickupTime = 3f;
-    public bool canInteract = false;
+    public float interactRange = 10f; //Range for how far the player can interact with the environment/entities.
+    public bool revivingPlayer = false; //Checks whether or not the player is attempting to revive another player.
+    public float pickupTime = 3f; //timer for the pickup time of the other player.
+    public bool canInteract = false; //Checks whether or not the player is able to interact with the environment/entities.
 
     //Health Management:
     [Header("Health Management")]
@@ -74,18 +74,18 @@ public class Player : NetworkBehaviour
     public int maxHealth = 100; //Max health of the player.
     public bool isDowned = false; //Checks whether or not the player is downed and needs to be revived.
     public bool beingRevived = false; //Checks whether or not the player is being revived
-    public bool playerDead = false;
-    public float timeTillDeath = 0;
-    public float deathTime = 15f;
-    public bool canTakeDamage = true;
+    public bool playerDead = false; //Checks whether or not the player is dead.
+    public float timeTillDeath = 0; //Timer to determine how long the player has left before they can no longer be revived.
+    public float deathTime = 15f;  //Default value for the time left till death.
+    public bool canTakeDamage = true; //Checks whether or not the player can be damaged.
 
     //References:
     [Header("References")]
     public CharacterController controller; //Reference for the attached character controller.
     public GameObject camera; //Reference for the attached camera.
-    public GameObject hand;
+    public GameObject hand; //Reference to allow for the instantiating of each weapon.
     public LayerMask ground; //Reference for the LayerMask that stores the value for ground.
-    public HUD hud;
+    public HUD hud; //Reference to the HUD display.
 
     public bool IsGrounded() //Used to determine if the player is grounded based on a collider check.
     {
@@ -112,7 +112,7 @@ public class Player : NetworkBehaviour
         return -1;
     }
 
-    bool PerkCheck(PerkType perkInput)
+    bool PerkCheck(PerkType perkInput) //Checks whether or not you already have the perk you are attempting to buy.
     {
         for (int i = 0; i < curPerks.Count; i++)
         {
@@ -124,7 +124,7 @@ public class Player : NetworkBehaviour
         return false;
     }
 
-    bool WeaponCheck(string weaponInput)
+    bool WeaponCheck(string weaponInput) //Checks whether or not you already have the weapon you are attempting to buy.
     {
         for (int i = 0; i < curWeapons.Count; i++)
         {
@@ -140,7 +140,7 @@ public class Player : NetworkBehaviour
     #region General
     public void Start() //Used to determine default values and grab references.
     {
-        if (isLocalPlayer)
+        if (isLocalPlayer) //Checks whether or not the player script is attached to the local player.
         {
             isDowned = false;
             playerDead = false;
@@ -161,38 +161,37 @@ public class Player : NetworkBehaviour
 
     public void Update() //Used to make reference to the sub-routines/methods.
     {
-        //Debug.Log(IsGrounded());
-        if (isLocalPlayer)
+        if (isLocalPlayer) //Checks whether or not the player script is attached to the local player.
         {
-            if (!playerDead)
+            if (!playerDead) //Checks whether not the player is dead.
             {
-                if (!isDowned)
+                if (!isDowned) //Checks whether or not the player is downed.
                 {
-                    Movement();
-                    if (canInteract)
+                    Movement(); //Calls upon the movement function.
+                    if (canInteract) //Checks whether or not the player can interact.
                     {
-                        CmdInteractions();
+                        CmdInteractions(); //Calls upon the function that allows interactions between the player and other entities.
 
-                        CmdShooting(selectedIndex);
+                        CmdShooting(selectedIndex); //Calls upon the function that allows the player to shoot.
 
-                        if (revivingPlayer == true)
+                        if (revivingPlayer == true) //Checks whether or not the player is attempting to revive another player.
                         {
-                            RevivingPlayer();
+                            RevivingPlayer(); //Calls upon the function that allows the player to revive another.
                         }
                     }
-                    WeaponModify();
+                    WeaponModify(); //Checks whether or not the curWeapon's list is has been modifed or not to allow for perks to apply their affect.
                 }
                 else
                 {
-                    PlayerDying();
+                    PlayerDying(); //Function that shows that the player is downed and dying.
                 }
             }
             else
             {
-                SpectatorMovement();
+                SpectatorMovement(); //Calls upon the function that allows the player to spectate.
             }
-            MouseMovement();
-            hud.weaponIndex = selectedIndex;
+            MouseMovement(); //Allows the player to move and look around.
+            hud.weaponIndex = selectedIndex; //Syncs up the selected weapon with the HUD to display ammo.
         }
     }
     #endregion
@@ -204,7 +203,7 @@ public class Player : NetworkBehaviour
         moveDirection.x = Input.GetAxis("Horizontal");
         moveDirection = transform.TransformDirection(moveDirection);
         walkSound = GetComponent<AudioSource>();
-        if (moveDirection.x >0 || moveDirection.z >0)
+        if (moveDirection.x >0 || moveDirection.z >0) //Checks whether or not the player is moving to allow for sound to play.
         {
             walkSound.Play();
         }
@@ -214,7 +213,7 @@ public class Player : NetworkBehaviour
             gravityIncreaseTimer = 0;
             appliedGravity = gravity;
             if (Input.GetButtonDown("Jump")) //Defaults back to default jump.
-            {
+            {   
                 moveDirection.y += jumpSpeed;
                 increaseTimer = 0;
             }
@@ -254,10 +253,10 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region Spectate
-    public void SpectatorMovement()
+    public void SpectatorMovement() //All the movement tied in with spectating.
     {
         moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        if (Input.GetButton("Spectate"))
+        if (Input.GetButton("Spectate")) //Checks wther or not the player is wanting to move up or down.
         {
             moveDirection.y = Input.GetAxis("Spectate") * speed;
         }
@@ -270,12 +269,12 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region Weapon Modify
-    public void WeaponModify()
+    public void WeaponModify() //Used to check whether the current weapon has been modified 
     {
-        if (curWeapons[selectedIndex].BeenModified == false)
+        if (curWeapons[selectedIndex].BeenModified == false) //Checks whehther or not the curWeapon has been modified.
         {
             Debug.Log("Activated");
-            for (int i = 0; i < curPerks.Count; i++)
+            for (int i = 0; i < curPerks.Count; i++) //Applies the effect of each perk onto the weapon.
             {
                 curPerks[i].ApplyStats(this);
             }
@@ -285,15 +284,15 @@ public class Player : NetworkBehaviour
 
     #region Shooting
     [Command]
-    public void CmdShooting(int weaponIndex)
+    public void CmdShooting(int weaponIndex) //Allows the player to shoot the current equiped weapon.
     {
         Debug.Log("Clip: " + curWeapons[weaponIndex].Clip);
         Debug.Log("Ammo: " + curWeapons[weaponIndex].Ammo);
-        if (shotCooldown <= 0)
+        if (shotCooldown <= 0) //Checks whether or not the cooldown for shooting has reached 0.
         {
-            if (curWeapons[weaponIndex].Clip > 0 && canFire == true)
+            if (curWeapons[weaponIndex].Clip > 0 && canFire == true) //Checks whether or not the current weapon still has ammo and is able to fire.
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0)) //Checks whether or not the player is attempting to shoot and calls upon the shoot function from the weapon as well as resetting the cooldown and taking away from the clip.
                 {
                     curWeapons[weaponIndex].Shoot(camera.GetComponentInChildren<Camera>(), gameObject, this);
                     shotCooldown = curWeapons[weaponIndex].FireRate;
@@ -302,26 +301,26 @@ public class Player : NetworkBehaviour
                     Debug.Log("Gun shot sound");
                 }
             }
-            else if (curWeapons[weaponIndex].Clip == 0 && curWeapons[weaponIndex].Ammo > 0)
+            else if (curWeapons[weaponIndex].Clip == 0 && curWeapons[weaponIndex].Ammo > 0) //If the clip is empty and there is still ammo, call upon the co-routine that allows the player to reload.
             {
                 StartCoroutine(Reload(weaponIndex));
                 canFire = false;
             }
         }
-        else
+        else //Count down for the cooldown.
         {
             shotCooldown -= Time.deltaTime;
         }
 
     }
 
-    public IEnumerator Reload(int weaponIndex)
+    public IEnumerator Reload(int weaponIndex) //Used to reload the gun
     {
         Debug.Log("Reloading: " + curWeapons[weaponIndex].Clip);
-        curWeapons[weaponIndex].Ammo -= curWeapons[weaponIndex].ClipSize;
+        curWeapons[weaponIndex].Ammo -= curWeapons[weaponIndex].ClipSize; //Takes the Clip Size away from the Ammo total and loads it into the clip to allow the player to shoot again.
         curWeapons[weaponIndex].Clip = curWeapons[weaponIndex].ClipSize;
         yield return new WaitForEndOfFrame();
-        yield return new WaitForSeconds(curWeapons[weaponIndex].ReloadTime);
+        yield return new WaitForSeconds(curWeapons[weaponIndex].ReloadTime); //Waits for the reload time and then allows the player to shoot again.
         canFire = true;
         Debug.Log("Reloaded: " + curWeapons[weaponIndex].Clip);
     }
@@ -329,25 +328,25 @@ public class Player : NetworkBehaviour
 
     #region Interactions
     [Command]
-    public void CmdInteractions()
+    public void CmdInteractions() //Used to check all interactions between the player and the environment/entities.
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) //Checks whether or not the player is attempting to interact and shoots a raycast out.
         {
             Vector3 mousePosition = camera.GetComponentInChildren<Camera>().ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
             RaycastHit hit;
-            if (Physics.Raycast(mousePosition, camera.transform.forward, out hit, interactRange))
+            if (Physics.Raycast(mousePosition, camera.transform.forward, out hit, interactRange)) //Checks whether or not the raycast has hit anything.
             {
-                if (hit.collider.tag == "Player")
+                if (hit.collider.tag == "Player") //If the raycast hits another player while they are downed, begin reviving.
                 {
                     hit.collider.GetComponent<Player>().beingRevived = true;
                     revivingPlayer = true;
                 }
-                if (hit.collider.tag == "PerkMachine")
+                if (hit.collider.tag == "PerkMachine") //If the raycast hits a PerkMachine, check whether or not the player is able to buy said perk and add it to the curPerk list if they can.
                 {
                     PerkMachine perkHitRef = hit.collider.GetComponent<PerkMachine>();
-                    if (PerkCheck(perkHitRef.Perk) == false)
+                    if (PerkCheck(perkHitRef.Perk) == false) //Checks whether or not the player has already received this perk.
                     {
-                        if (money >= perkHitRef.Cost)
+                        if (money >= perkHitRef.Cost) //Checks if the player has enough money for the perk.
                         {
                             money -= perkHitRef.Cost;
                             curPerks.Add(PerkData.AddPerk(perkHitRef.Perk));
@@ -355,25 +354,25 @@ public class Player : NetworkBehaviour
                         }
                     }
                 }
-                if (hit.collider.tag == "GunVendor")
+                if (hit.collider.tag == "GunVendor") //If the raycast hits a GunVendor, check whether or not the player does not already have said gun and either allow the player to buy said gun or refill ammo.
                 {
                     WeaponVendor weaponHitRef = hit.collider.GetComponent<WeaponVendor>();
                     Debug.Log("Registered Weapon Vendor");
-                    if (WeaponCheck(weaponHitRef.WeaponName) == false)
+                    if (WeaponCheck(weaponHitRef.WeaponName) == false) //Checks whether or not the player already has the gun.
                     {
                         Debug.Log("Name Check Complete Weapon Vendor");
-                        if (money >= weaponHitRef.Cost)
+                        if (money >= weaponHitRef.Cost) //Checks whether or not the player has enough money for the gun and if they do, buys it.
                         {
                             money -= weaponHitRef.Cost;
                             curWeapons.Add(WeaponType.AddWeapon(weaponHitRef.WeaponName));
                         }
                     }
-                    else
+                    else //If the player alreay has the gun, allows the player to buy a ammo refill.
                     {
-                        if (money >= weaponHitRef.Cost)
+                        if (money >= weaponHitRef.Cost) //Checks whether or not the player has enough money for the refill.
                         {
                             money -= weaponHitRef.Cost;
-                            for (int i = 0; i < curWeapons.Count; i++)
+                            for (int i = 0; i < curWeapons.Count; i++) //Checks whether or not the weapon is in the current weapon slot and applies the ammo refill.
                             {
                                 if (curWeapons[i].Name == weaponHitRef.WeaponName)
                                 {
@@ -383,13 +382,13 @@ public class Player : NetworkBehaviour
                         }
                     }
                 }
-                if (hit.collider.tag == "Door")
+                if (hit.collider.tag == "Door") //If the raycast hits a Door, check whether or not the player has enough money to open said door 
                 {
                     Door doorHitRef = hit.collider.GetComponentInParent<Door>();
                     int doorIndex = GetNumberFromString(hit.collider.name);
-                    if (doorHitRef.doorOpen[doorIndex] == false)
+                    if (doorHitRef.doorOpen[doorIndex] == false) //Checks whether or not the door has already been openned.
                     {
-                        if (money >= doorHitRef.cost[doorIndex])
+                        if (money >= doorHitRef.cost[doorIndex]) //If the player has enough money for the door, buys the door and opens it.
                         {
                             money -= doorHitRef.cost[doorIndex];
                             doorHitRef.OpenDoor(doorIndex);
@@ -402,12 +401,12 @@ public class Player : NetworkBehaviour
     #endregion
 
     #region Health Management
-    public void TakeDamage(int damageDealt)
+    public void TakeDamage(int damageDealt) //Function that can be called upon to deal damage to the player.
     {
-        if (canTakeDamage)
+        if (canTakeDamage) //Checks whether or not the player has an iFrame and takes away damage if they don't.
         {
             curHealth -= damageDealt;
-            if (curHealth <= 0)
+            if (curHealth <= 0) //Checks whether or not the player has 0 health to allow the player to go down.
             {
                 isDowned = true;
                 canTakeDamage = false;
@@ -416,19 +415,19 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public IEnumerator iFrame()
+    public IEnumerator iFrame() //Co-routine that's used as a timer to check whether or not the player can take damage.
     {
         canTakeDamage = false;
         yield return new WaitForSeconds(0.3f);
         canTakeDamage = true;
     }
 
-    public void RevivingPlayer()
+    public void RevivingPlayer() //Used to call upon the function that allows the player to be revived.
     {
         StartCoroutine(Revived(transform));
     }
 
-    public void PlayerDying()
+    public void PlayerDying() //Used to slowly kill off the player and once the timer runs out, sets up spectate mode for the player.
     {
         timeTillDeath += Time.deltaTime;
         if (timeTillDeath >= deathTime)
@@ -437,7 +436,7 @@ public class Player : NetworkBehaviour
         }
     }
 
-    public IEnumerator SetupSpectator()
+    public IEnumerator SetupSpectator() //co-routine used to stop all interactions from the environment with the player and allow them to be classified as dead.
     {
         playerDead = true;
         deaths++;
@@ -450,7 +449,7 @@ public class Player : NetworkBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    public IEnumerator Revived(Transform spawnPos)
+    public IEnumerator Revived(Transform spawnPos) //Revives the player and unlocks all abilities for the player.
     {
         gameObject.transform.position = spawnPos.position;
         curHealth = maxHealth;

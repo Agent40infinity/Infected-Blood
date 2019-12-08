@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*--------------------------------------------------------------------------
+ * Script Created by: Jack w/ Aiden Nathan.
+ *------------------------------------------------------------------------*/
+
 public static class PerkData
 {
-    public static Perks AddPerk(PerkType Type)
+    public static Perks AddPerk(PerkType Type) //Used to add a perk to a List
     {
+        //Variable references to allow for a private setting.
         int id = 0;
         string name = "";
         string perkIcon = "";
@@ -18,7 +23,7 @@ public static class PerkData
         float fireRateIncrease = 1f;
 
         // PerkType;
-        switch (Type)
+        switch (Type) //Used to determine what type of perk is being added and changes the stats modifed in accordance.
         {
             case PerkType.HealthIncrease:
                 id = 0;
@@ -64,7 +69,7 @@ public static class PerkData
                 break;
 
         }
-        Perks temp = new Perks()
+        Perks temp = new Perks() //Creates the data for a new perk and applies the temp/private modifications to said perk then returns the perk as the value for AddPerk.
         {
             ID = id,
             Name = name,
